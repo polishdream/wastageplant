@@ -2,31 +2,33 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////var/www/demo/baza.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////media/sdcard/userParams.db'
 db = SQLAlchemy(app)
 
 class Params(db.Model):
 	__tablename__ = 'params'
 	id = db.Column('id',db.Integer, primary_key = True)
 	tsim = db.Column('tsim',db.Float)
+	timestamp = db.Column('timestamp',db.Text)
 	qin = db.Column('qin',db.Float)
+	qw = db.Column('qw',db.Float)
 	qir = db.Column('qir',db.Float)
 	qr = db.Column('qr',db.Float)
-	qe = db.Column('qe',db.Float)
-	qw = db.Column('qw',db.Float)
-	sosat = db.Column('sosat',db.Float)
+	kla1 = db.Column('kla1',db.Float)
+	kla2 = db.Column('kla2',db.Float)
 	kla3 = db.Column('kla3',db.Float)
 	kla4 = db.Column('kla4',db.Float)
 	kla5 = db.Column('kla5',db.Float)
 
-	def __init__(self,tsim,qin,qir,qr,qe,qw,sosat,kla3,kla4,kla5):
+	def __init__(self,timestamp,tsim,qin,qir,qr,qe,qw,sosat,kla3,kla4,kla5):
+		self.timestamp = timestamp
 		self.tsim = tsim
 		self.qin = qin
+		self.qw = qw
 		self.qir = qir
 		self.qr = qr
-		self.qe = qe
-		self.qw = qw
-		self.sosat = sosat
+		self.kla1 = kla1
+		self.kla2 = kla2
 		self.kla3 = kla3
 		self.kla4 = kla4
 		self.kla5 = kla5
