@@ -51,26 +51,27 @@
 	</div>
 	
 	-->
-<form action="index.html">
+{% for Par in Params %}
+<form action="{{ url_for('submitParams') }}">
 	<div>
-		<input type="number" max="22000" min="0" maxlength="5" step="0.0001" class="textboxQ textboxQin" name=qin>
-		<input type="text" class="textboxQ textboxQir" name=qir>
-		<input type="text" class="textboxQ textboxQr" name=qr>
-		<input type="text" class="textboxQ textboxQw" name=qw>
+		<label style="position:absolute;top:106px;left:270px;font-size:12px;">Czas symulacji:</label><input type="text" class="textboxQ textboxTsim" name=tsim value="{{ Par.tsim }}">
+		<input type="number" max="22000" min="0" maxlength="8" step="0.1" class="textboxQ textboxQin" name=qin value="{{ Par.qin }}">
+		<input type="text" class="textboxQ textboxQir" name=qir value="{{ Par.qir }}">
+		<input type="text" class="textboxQ textboxQr" name=qr value="{{ Par.qr }}">
+		<input type="text" class="textboxQ textboxQw" name=qw value="{{ Par.qw }}">
 		
-		<input type="text" class="kla kla1" name=kla1>
-		<input type="text" class="kla kla2" name=kla2>
-		<input type="text" class="kla kla3" name=kla3>
-		<input type="text" class="kla kla4" name=kla4>
-		<input type="text" class="kla kla5" name=kla5>
+		<input type="text" class="kla kla1" name=kla1 value="{{ Par.kla1 }}">
+		<input type="text" class="kla kla2" name=kla2 value="{{ Par.kla2 }}">
+		<input type="text" class="kla kla3" name=kla3 value="{{ Par.kla3 }}">
+		<input type="text" class="kla kla4" name=kla4 value="{{ Par.kla4 }}">
+		<input type="text" class="kla kla5" name=kla5 value="{{ Par.kla5 }}">
 	</div>
-	<input class="button saveButton" type="submit" value="Zapisz">
+	<input class="button defaultButton" type="submit" name="default" value="Domyślne">
+	<input class="button saveButton" type="submit" name="save" value="Zapisz">
 </form>
-	<a href="{{ url_for('influent') }}"><button name="influent" class="button button1 inButton" tyle="vertical-align:middle"><span>Parametry </span>
+{% endfor %}
+	<a href="{{ url_for('influent') }}"><button name="influent" class="button button1 inButton"><span>Parametry </span>
 	</button></a>
-
-	<a href="{{ url_for('influent') }}"><button name="influent" class="button defaultButton" tyle="vertical-align:middle"><span>Domyślne</span>
-        </button></a>
 	
 	<a href="{{ url_for('bioreactor') }}"><button name="bioparams" class="button button1 bioButton" tyle="vertical-align:middle"><span>Parametry </span>
 	</button></a>

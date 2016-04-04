@@ -15,12 +15,24 @@ app.config.from_envvar('DEMO_SETTINGS', silent=True)
 app.debug = True
 
 @app.route('/')
-def index(): #comment
+def index():
         return render_template('index.html')
 
 @app.route('/symulacja')
 def symulacja():
-        return render_template('params.html')
+	f = Params.query.first()
+	params = [dict(tsim = f.tsim,
+			qin = f.qin,
+			qw = f.qw,
+			qir = f.qir,
+			qr = f.qr,
+			kla1 = f.kla1,
+			kla2 = f.kla2,
+			kla3 = f.kla3,
+			kla4 = f.kla4,
+			kla5 = f.kla5)]
+			
+        return render_template('params.html', Params=params)
 
 @app.route('/symulacja/doplyw')
 def influent():
