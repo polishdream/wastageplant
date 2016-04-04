@@ -1,11 +1,11 @@
 from flask import Flask, g, Markup, render_template, redirect, request, url_for
-from sqlAl import Params, Flags, db, C1, C2, C3, C4, C5
+from sqlAl import Params, db, C1, C2, C3, C4, C5
 from sAluser import CC1, CC2, CC3, CC4, CC5, dbu
 from werkzeug import secure_filename
 from sqlalchemy import desc
 from sqlalchemy.exc import SQLAlchemyError
 import sqlite3
-import time
+import datetime
 import os
 import subprocess
 
@@ -45,6 +45,25 @@ def bioreactor():
 @app.route('/symulacja/osadnik')
 def settler():
         return render_template('osadParams.html')
+
+@app.route('/submitParams', methods=['POST'])
+def submitParams():
+	if request.form['submit'] == 'Zapisz':
+		dt = datetime.datetime.now()
+		record = Params.query.first()
+		record.timestamp = dt
+		record.tsim = request.form['tsim']
+		record.qin = request.form['qin']
+		record.qw = request.form['qw']
+		record.qir = request.form['qir']
+		record.qr = request.form['qr']
+		record.kla1 = request.form['kla1']
+                record.kla2 = request.form['kla2']
+		record.kla3 = request.form['kla3']
+		record.kla4 = request.form['kla4']
+		record.kla5 = request.form['kla5']
+		db.session.commit()
+	return redirect(url_for('symulacja'))
 
 if __name__ == '__main__':
     app.run()
