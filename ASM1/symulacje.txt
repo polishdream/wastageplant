@@ -1,0 +1,6 @@
+Rozpoczynam dzialanie. start = 1 2016-02-26 17:30:10.388907
+100
+Symulacja zakonczona 2016-02-26 17:31:14.205858
+Rozpoczynam dzialanie. start = 1 2016-02-26 17:36:57.124533
+60480
+Symulacja zakonczona 2016-02-26 18:30:36.823786

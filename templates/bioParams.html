@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+	<meta charset="UTF-8">
+	<title>ASMET</title>
+	<link rel="stylesheet" type="text/css" href="/static/params.css">
+</head>
+
+<body>
+
+<div>
+	<ul id="menu">		
+		<li><a href="{{ url_for('index') }}">Home</a></li>
+		<li><a href="{{ url_for('symulacja') }}">Parametry symulacji</a></li>
+		<li class="dropdown">
+			<a href="#" class="dropbtn">Wyniki symulacji</a>
+				<div class="dropdown-content">
+					<div class="dropdown2">
+						<a href="#" class="dropbtn2">Bioreaktor</a>
+							<div class="dropdown-content2" style="top:51px; left:433px;">
+								<a href="#">Frakcje rozpuszczone</a>
+								<a href="#">Frakcje w zawiesinie</a>
+							</div>
+					</div>
+					<div class="dropdown2">
+						<a href="#" class="dropbtn2">Osadnik</a>
+							<div class="dropdown-content2" style="top:97px; left:433px;">
+								<a href="#">Strefa klaryfikacji</a>
+								<a href="#">Strefa sedymentacji</a>
+							</div>
+					</div>
+				</div>
+		</li>
+	</ul>
+</div>
+
+<div class="plant2">
+	<img src="/static/images/bioreaktor.png">
+<!--	
+	<div class="textboxS">
+		<input type="text" name="si" style="top:103px;">
+		<input type="text" name="snd" style="top:149px;">
+		<input type="text" name="snh" style="top:195px;">
+		<input type="text" name="sno" style="top:242px;">
+		<input type="text" name="so" style="top:288px;">
+		<input type="text" name="ss" style="top:335px;">
+	</div>
+	
+	<div class="textboxX">
+		<input type="text" name="xbh" style="top:101px;">
+		<input type="text" name="xba" style="top:147px;">
+		<input type="text" name="xs" style="top:193px;">
+		<input type="text" name="xnd" style="top:239px;">
+		<input type="text" name="xp" style="top:286px;">
+		<input type="text" name="xi" style="top:332px;">
+	</div>
+	
+	<div class="textboxInS">
+		<input type="text" name="si" style="top:125px;">
+		<input type="text" name="snd" style="top:161px;">
+		<input type="text" name="snh" style="top:198px;">
+		<input type="text" name="sno" style="top:234px;">
+		<input type="text" name="so" style="top:272px;">
+		<input type="text" name="ss" style="top:308px;">
+	</div>
+	
+	<div class="textboxInX">
+		<input type="text" name="xbh" style="top:125px;">
+		<input type="text" name="xba" style="top:161px;">
+		<input type="text" name="xs" style="top:198px;">
+		<input type="text" name="xnd" style="top:234px;">
+		<input type="text" name="xp" style="top:272px;">
+		<input type="text" name="xi" style="top:308px;">
+	</div>-->
+	<a href="{{ url_for('settler') }}"><button name="settparams" class="button button1 nextButton" tyle="vertical-align:middle"><span>Osadnik </span>
+	</button></a>
+	<a href="{{ url_for('influent') }}"><button name="settparams" class="button button2 prevButton" tyle="vertical-align:middle"><span>Dopływ </span>
+	</button></a>
+</div>
+
+</body>
+</html>

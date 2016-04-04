@@ -1,0 +1,71 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	background: #28313A url(images/img01.jpg) repeat-x left top;
+	font-size: 10px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	text-align: justify;
+	color: #5C5C5C;
+}
+
+#calosc
+{
+	width: 100%;
+	height: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#napis
+{
+	width: 98%;
+	margin-left: 1%;
+	margin-top: 1%;
+	height: 20%;
+	background: url(images/img02.jpg) repeat-x left top;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+#lewa
+{
+	background-color: #FFFFFF;
+	width: 98%;
+	height: 200px;
+	margin-left: 1%;
+	margin-top: 1%;
+	color: #000000;
+	float:left;
+}
+
+#prawa
+{
+	background-color: #FFFFFF;
+	width: 98%;
+	height: 300px;
+	margin-left: 1%;
+	margin-top: 1%;
+	color: #000000;
+	float:left;
+}
+
+#stopka
+{
+	clear: both;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+.option
+{
+	font-size: 15px;
+	height: 20px;
+	padding: 3px;
+}
+.option:hover
+{
+	background-color: #000000;
+	color:white;
+	cursor: pointer;
+}

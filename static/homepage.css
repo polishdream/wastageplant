@@ -1,0 +1,177 @@
+@keyframes fadeInLogo {
+	0%{ opacity:0; top: 180px; }
+	25%{ opacity:1; top:150px; }
+	50%{width:70%; top: 150px;left:0%; }
+	100%{width:30%; top: 70px; left:70%;}
+}
+
+@keyframes fadeInMenu {
+	from{ opacity:0; }
+	to{ opacity:1; }
+}
+
+body {
+	width:100%
+	font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 20px;
+	text-align: center;
+	background: #E3CAA1;
+}
+
+/*#root {
+	/*border-style: solid;
+	border-width:1px;
+	margin: 0;
+	padding:0;
+	width:100%;
+}*/
+
+/*--------------------menu główne----------------------*/
+#menuHome {
+    list-style-type: none;
+    position:fixed;
+    width:100%;
+    min-width:1000px;
+    top:0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: #f3f3f3;
+	z-index:10;
+
+}
+#menuHome li {
+    float: left;
+}
+
+#menuHome li a, .dropbtn{
+	display: inline-block;
+	font: bold 16px/22px sans-serif;
+	color: #666;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration:none;
+	-webkit-transition: background-color 0.2s;
+	transition: background-color 0.2s;
+}
+
+#menuHome li a:hover, .dropdown:hover dropbtn  {
+    background-color: #ddd;
+    }
+
+#menuHome li.dropdown {
+	display: inline-block;
+}
+
+/* skopiowane*/
+
+#menuHome .dropdown-content {
+    display: none;
+    position: fixed;
+    /*border: 1px solid #e7e7e7;*/
+    background-color: #f3f3f3;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    z-index:11;
+}
+
+#menuHome .dropdown-content a {
+    color: #666;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+#menuHome .dropdown-content a:hover {
+	background-color: #ddd
+	}
+
+#menuHome .dropdown:hover .dropdown-content {
+    display: block;
+}
+  
+/*=======================================================*/  
+#logo {
+	/*border-style:solid;
+	border-width:1px;*/
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+	left: 0;
+	right: 0;
+	top: 150px;
+	animation-name: fadeInLogo;
+	animation-fill-mode: forwards;
+	animation-duration: 1s;
+}
+
+#logo img{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	left:0%;
+	top: 0px;
+}
+
+#naglowek1{
+	/*border-style:solid;
+	border-width: 1px;*/
+	opacity: 0;
+	color: #666;
+	position: absolute;
+	left: 0;
+	right: 0;
+	/*top:10%;*/
+	margin-left: auto;
+	margin-right: auto;
+	font: Arial;
+	z-index: 9;
+	animation-name: fadeInMenu;
+	animation-fill-mode: forwards;
+	animation-duration: 2s;
+	animation-delay: 1s;
+}
+
+#naglowek2{
+	/*border-style: solid;
+	border-width: 1px;*/
+	opacity: 0;
+	font-size: 80%;
+	color: #666;
+	position:absolute;
+	left:0;
+	right:0;
+	top: 28%;
+	margin-left: auto;
+	margin-right: auto;
+	font: Arial;
+	z-index: 9;
+    animation-name: fadeInMenu;
+    animation-fill-mode: forwards;
+	animation-duration: 2s;
+	animation-delay: 1s;
+}
+
+#naglowek3{
+	/*border-style:solid;
+	border-width: 1px;*/
+	opacity:0;
+	font-size: 150%;
+	color: #666;
+	position:absolute;
+	left:0;
+	right:0;
+	top:31%;
+	margin-left:auto;
+	margin-right:auto;
+	font: bold 140%/140% Arial;
+	z-index:9;
+    animation-name: fadeInMenu;
+    animation-fill-mode: forwards;
+	animation-duration: 2s;
+	animation-delay:1s;
+}

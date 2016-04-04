@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+	<meta charset="UTF-8">
+	<title>ASMET</title>
+	<link rel="stylesheet" type="text/css" href="static/params.css">
+</head>
+
+<body>
+
+<div>
+	<ul id="menu">		
+		<li><a href="{{ url_for('index') }}">Home</a></li>
+		<li><a href="{{ url_for('symulacja') }}">Parametry symulacji</a></li>
+		<li class="dropdown">
+			<a href="#" class="dropbtn">Wyniki symulacji</a>
+				<div class="dropdown-content">
+					<div class="dropdown2">
+						<a href="#" class="dropbtn2">Bioreaktor</a>
+							<div class="dropdown-content2" style="top:51px; left:433px;">
+								<a href="#">Frakcje rozpuszczone</a>
+								<a href="#">Frakcje w zawiesinie</a>
+							</div>
+					</div>
+					<div class="dropdown2">
+						<a href="#" class="dropbtn2">Osadnik</a>
+							<div class="dropdown-content2" style="top:97px; left:433px;">
+								<a href="#">Strefa klaryfikacji</a>
+								<a href="#">Strefa sedymentacji</a>
+							</div>
+					</div>
+				</div>
+		</li>
+	</ul>
+</div>
+
+<div class="plant">
+	<img src="/static/images/oczyszczalnia_dpi.png">
+	<!--
+	<div class="textboxL">
+		<input type="text" name="l1" style="top:75px;">
+		<input type="text" name="l2" style="top:113px;">
+		<input type="text" name="l3" style="top:150px;">
+		<input type="text" name="l4" style="top:188px;">
+		<input type="text" name="l5" style="top:225px;">
+		<input type="text" name="l6" style="top:263px;">
+		<input type="text" name="l7" style="top:300px;">
+		<input type="text" name="l8" style="top:338px;">
+		<input type="text" name="l9" style="top:374px;">
+		<input type="text" name="l10" style="top:413px;">
+	</div>
+	
+	-->
+<form action="index.html">
+	<div>
+		<input type="number" max="22000" min="0" maxlength="5" step="0.0001" class="textboxQ textboxQin" name=qin>
+		<input type="text" class="textboxQ textboxQir" name=qir>
+		<input type="text" class="textboxQ textboxQr" name=qr>
+		<input type="text" class="textboxQ textboxQw" name=qw>
+		
+		<input type="text" class="kla kla1" name=kla1>
+		<input type="text" class="kla kla2" name=kla2>
+		<input type="text" class="kla kla3" name=kla3>
+		<input type="text" class="kla kla4" name=kla4>
+		<input type="text" class="kla kla5" name=kla5>
+	</div>
+	<input class="button saveButton" type="submit" value="Zapisz">
+</form>
+	<a href="{{ url_for('influent') }}"><button name="influent" class="button button1 inButton" tyle="vertical-align:middle"><span>Parametry </span>
+	</button></a>
+
+	<a href="{{ url_for('influent') }}"><button name="influent" class="button defaultButton" tyle="vertical-align:middle"><span>Domyślne</span>
+        </button></a>
+	
+	<a href="{{ url_for('bioreactor') }}"><button name="bioparams" class="button button1 bioButton" tyle="vertical-align:middle"><span>Parametry </span>
+	</button></a>
+	
+	<a href="{{ url_for('settler') }}"><button name="settparams" class="button button1 settlerButton" tyle="vertical-align:middle"><span>Parametry </span>
+	</button></a>
+
+	
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+	<meta charset="UTF-8">
+	<title>ASMET</title>
+	<link rel="stylesheet" type="text/css" href="/static/homepage.css">
+</head>
+
+<body>
+
+<div>
+	<ul id="menuHome">		
+		<li><a href="{{ url_for('index') }}">Home</a></li>
+		<li><a href="{{ url_for('symulacja') }}">Parametry symulacji</a></li>
+		<li class="dropdown">
+			<a href="#" class="dropbtn">Wyniki symulacji</a>
+				<div class="dropdown-content">
+					<a href="#">Bioreaktor</a>
+					<a href="#">Osadnik</a>
+				</div>
+		</li>
+	</ul>
+</div>
+
+<!----><div id="logo">
+	<img src="/static/images/inz_logo.png">
+</div>
+
+<div>
+<p id="naglowek1" style="top:10%;">
+INSTYTUT INFORMATYKI
+<br><br>	
+KIERUNEK: INFORMATYKA
+<br>
+PWSZ W GNIEŹNIE
+</p>
+<p id="naglowek2">
+PRACA DYPLOMOWA INŻYNIERSKA
+</p>
+<p id="naglowek3">
+WYKORZYSTANIE SYSTEMÓW WBUDOWANYCH<br> 
+DO WSPOMAGANIA DECYZJI<br> 
+EKSPLOATATORA OCZYSZCZALNI ŚCIEKÓW
+</p>
+
+<p id="naglowek1" style="top:55%;">
+Mateusz Walczak
+</p>
+</div>
+<!--</div>-->
+</body>
+</html>
