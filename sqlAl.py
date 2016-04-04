@@ -33,6 +33,38 @@ class Params(db.Model):
 		self.kla4 = kla4
 		self.kla5 = kla5
 
+class Cin(db.Model):
+        __tablename__ = 'Cin'
+        id = db.Column('id',db.Integer, primary_key = True)
+        timestamp = db.Column('timestamp', db.Text)
+        si = db.Column('si', db.Float)
+        snd = db.Column('snd', db.Float)
+        snh = db.Column('snh', db.Float)
+        sno = db.Column('sno', db.Float)
+        so = db.Column('so', db.Float)
+        ss = db.Column('ss', db.Float)
+        xa = db.Column('xa', db.Float)
+        xh = db.Column('xh', db.Float)
+        xi = db.Column('xi', db.Float)
+        xnd = db.Column('xnd', db.Float)
+        xp = db.Column('xp', db.Float)
+        xs = db.Column('xs', db.Float)
+
+        def __init__(self,timestamp,si,snd,snh,sno,so,ss,xa,xh,xi,xnd,xp,xs):
+                self.timestamp = timestamp
+                self.si = si
+                self.snd = snd
+                self.snh = snh
+                self.sno = sno
+                self.so = so
+                self.ss = ss
+                self.xa = xa
+                self.xh = xh
+                self.xi = xi
+                self.xnd = xnd
+                self.xp = xp
+                self.xs = xs
+
 class C1(db.Model):
 	__tablename__ = 'c1'
 	id = db.Column('id',db.Integer, primary_key = True)

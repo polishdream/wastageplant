@@ -32,3 +32,35 @@ class DefaultParams(dbDef.Model):
                 self.kla3 = kla3
                 self.kla4 = kla4
                 self.kla5 = kla5
+
+class DefaultCin(dbDef.Model):
+        __tablename__ = 'Cin'
+        id = dbDef.Column('id',dbDef.Integer, primary_key = True)
+        timestamp = dbDef.Column('timestamp', dbDef.Text)
+        si = dbDef.Column('si', dbDef.Float)
+        snd = dbDef.Column('snd', dbDef.Float)
+        snh = dbDef.Column('snh', dbDef.Float)
+        sno = dbDef.Column('sno', dbDef.Float)
+        so = dbDef.Column('so', dbDef.Float)
+        ss = dbDef.Column('ss', dbDef.Float)
+        xa = dbDef.Column('xa', dbDef.Float)
+        xh = dbDef.Column('xh', dbDef.Float)
+        xi = dbDef.Column('xi', dbDef.Float)
+        xnd = dbDef.Column('xnd', dbDef.Float)
+        xp = dbDef.Column('xp', dbDef.Float)
+        xs = dbDef.Column('xs', dbDef.Float)
+
+        def __init__(self,timestamp,si,snd,snh,sno,so,ss,xa,xh,xi,xnd,xp,xs):
+                self.timestamp = timestamp
+                self.si = si
+                self.snd = snd
+                self.snh = snh
+                self.sno = sno
+                self.so = so
+                self.ss = ss
+                self.xa = xa
+                self.xh = xh
+                self.xi = xi
+                self.xnd = xnd
+                self.xp = xp
+                self.xs = xs

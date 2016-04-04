@@ -35,25 +35,31 @@
 </div>
 
 <div class="plant2">
-	<img src="/static/images/doplyw.png">
-<!--	
+	<img class="influent" src="/static/images/doplyw.png">
+
+{% for Par in Params %}
+<form action="{{ url_for('submitInParams') }}" method="post">
 	<div class="textboxInS">
-		<input type="text" name="si" style="top:125px;">
-		<input type="text" name="snd" style="top:161px;">
-		<input type="text" name="snh" style="top:198px;">
-		<input type="text" name="sno" style="top:234px;">
-		<input type="text" name="so" style="top:272px;">
-		<input type="text" name="ss" style="top:308px;">
+		<input type="text" name="si" style="top:60px;" value="{{ Par.si }}">
+		<input type="text" name="snd" style="top:133px;" value="{{ Par.snd  }}">
+		<input type="text" name="snh" style="top:205px;" value="{{ Par.snh }}">
+		<input type="text" name="sno" style="top:277px;" value="{{ Par.sno }}">
+		<input type="text" name="so" style="top:350px;" value="{{ Par.so }}">
+		<input type="text" name="ss" style="top:423px;" value="{{ Par.ss }}">
 	</div>
 	
 	<div class="textboxInX">
-		<input type="text" name="xbh" style="top:125px;">
-		<input type="text" name="xba" style="top:161px;">
-		<input type="text" name="xs" style="top:198px;">
-		<input type="text" name="xnd" style="top:234px;">
-		<input type="text" name="xp" style="top:272px;">
-		<input type="text" name="xi" style="top:308px;">
-	</div>-->
+		<input type="text" name="xh" style="top:60px;" value="{{ Par.xh }}">
+		<input type="text" name="xa" style="top:133px;" value="{{ Par.xa }}">
+		<input type="text" name="xs" style="top:205px;" value="{{ Par.xs }}">
+		<input type="text" name="xnd" style="top:277px;" value="{{ Par.xnd }}">
+		<input type="text" name="xp" style="top:350px;" value="{{ Par.xp }}">
+		<input type="text" name="xi" style="top:423px;" value="{{ Par.xi }}">
+	</div>
+	<input class="button inDefaultButton" type="submit" name="inSubmit" value="Default">
+        <input class="button inSaveButton" type="submit" name="inSubmit" value="Zapisz">
+</form>
+{% endfor %}
 	<a href="{{ url_for('bioreactor') }}"><button name="bioParams" class="button button1 nextButton" tyle="vertical-align:middle"><span>Bioreaktor </span>
 	</button></a>
 	<a href="{{ url_for('settler') }}"><button name="settparams" class="button button2 prevButton" tyle="vertical-align:middle"><span>Osadnik </span>

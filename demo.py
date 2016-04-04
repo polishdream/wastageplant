@@ -1,6 +1,6 @@
 from flask import Flask, g, Markup, render_template, redirect, request, url_for
-from sqlAl import Params, db, C1, C2, C3, C4, C5
-from DefaultSqlAl import DefaultParams
+from sqlAl import db, Params, Cin, C1, C2, C3, C4, C5
+from DefaultSqlAl import DefaultParams, DefaultCin
 from werkzeug import secure_filename
 from sqlalchemy import desc
 from sqlalchemy.exc import SQLAlchemyError
@@ -36,7 +36,21 @@ def symulacja():
 
 @app.route('/symulacja/doplyw')
 def influent():
-        return render_template('doplyw.html')
+        f = Cin.query.first()
+        params = [dict(si = f.si,
+                        snd = f.snd,
+                        snh = f.snh,
+                        sno = f.sno,
+                        so = f.so,
+                        ss = f.ss,
+                        xa = f.xa,
+                        xh = f.xh,
+                        xi = f.xi,
+                        xnd = f.xnd,
+			xp = f.xp,
+			xs = f.xs)]
+
+        return render_template('doplyw.html', Params=params)
 
 @app.route('/symulacja/bioreaktor')
 def bioreactor():
@@ -82,6 +96,45 @@ def submitParams():
                 record.kla5 = defPar.kla5
                 db.session.commit()
 	return redirect(url_for('symulacja'))
+
+@app.route('/submitInParams', methods=['POST'])
+def submitInParams():
+        if request.form['inSubmit'] == 'Zapisz':
+                dt = datetime.datetime.now()
+                record = Cin.query.first()
+                record.timestamp = dt
+                record.si = request.form['si']
+                record.snd = request.form['snd']
+                record.snh = request.form['snh']
+                record.sno = request.form['sno']
+                record.so = request.form['so']
+                record.ss = request.form['ss']
+                record.xa = request.form['xa']
+                record.xh = request.form['xh']
+                record.xi = request.form['xi']
+                record.xnd = request.form['xnd']
+		record.xp = request.form['xp']
+		record.xs = request.form['xs']
+                db.session.commit()
+
+        elif request.form['inSubmit'] == 'Default':
+                defPar = DefaultCin.query.first()
+                dt = datetime.datetime.now()
+                record = Cin.query.first()
+                record.timestamp = dt
+                record.snd = defPar.snd
+                record.snh = defPar.snh
+                record.sno = defPar.sno
+                record.so = defPar.so
+                record.ss = defPar.ss
+                record.xa = defPar.xa
+                record.xh = defPar.xh
+                record.xi = defPar.xi
+                record.xnd = defPar.xnd
+		record.xp = defPar.xp
+		record.xs = defPar.xs
+                db.session.commit()
+        return redirect(url_for('influent'))
 
 if __name__ == '__main__':
     app.run()

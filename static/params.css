@@ -132,24 +132,31 @@ body {
 	width: 41%;
 }
 
+.plant2 img.influent{
+        position: relative;
+        top: 60px;
+}
+
 .textboxInS input{
+	font-size:20px;
 	background-color: rgba(0,0,0,0);
-	border: 1px solid;
+	border: 2px solid;
 	z-index:9;
-	width:81px;
-	height:17px;
+	width:163px;
+	height:37px;
 	position:absolute;
-	left:36px;
+	left:248px;
 }
 
 .textboxInX input{
+	font-size:20px;
 	background-color: rgba(0,0,0,0);
 	border: 1px solid;
 	z-index:9;
-	width:81px;
-	height:17px;
+	width:163px;
+	height:37px;
 	position:absolute;
-	left:256px;
+	left:684px;
 }
 
 .textboxS input{
@@ -297,6 +304,22 @@ body {
 	height:40px;
 	top:180px;
 	left:65px;
+}
+
+.inSaveButton{
+        font-size:12px;
+        width:140px;
+        height:40px;
+        top:525px;
+        left:425px;
+}
+
+.inDefaultButton{
+        font-size:12px;
+        width:140px;
+        height:40px;
+        top:525px;
+        left:225px;
 }
 
 .saveButton{
