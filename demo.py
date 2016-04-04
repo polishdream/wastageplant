@@ -15,7 +15,7 @@ app.config.from_envvar('DEMO_SETTINGS', silent=True)
 app.debug = True
 
 @app.route('/')
-def index():
+def index(): #comment
         return render_template('index.html')
 
 @app.route('/symulacja')
