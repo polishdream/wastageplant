@@ -1,6 +1,6 @@
 from flask import Flask, g, Markup, render_template, redirect, request, url_for
 from sqlAl import Params, db, C1, C2, C3, C4, C5
-from sAluser import CC1, CC2, CC3, CC4, CC5, dbu
+from DefaultSqlAl import DefaultParams
 from werkzeug import secure_filename
 from sqlalchemy import desc
 from sqlalchemy.exc import SQLAlchemyError
@@ -63,6 +63,24 @@ def submitParams():
 		record.kla4 = request.form['kla4']
 		record.kla5 = request.form['kla5']
 		db.session.commit()
+
+	elif request.form['submit'] == 'Default':
+		defPar = DefaultParams.query.first()
+
+                dt = datetime.datetime.now()
+                record = Params.query.first()
+                record.timestamp = dt
+                record.tsim = defPar.tsim
+                record.qin = defPar.qin
+                record.qw = defPar.qw
+                record.qir = defPar.qir
+                record.qr = defPar.qr
+                record.kla1 = defPar.kla1
+                record.kla2 = defPar.kla2
+                record.kla3 = defPar.kla3
+                record.kla4 = defPar.kla4
+                record.kla5 = defPar.kla5
+                db.session.commit()
 	return redirect(url_for('symulacja'))
 
 if __name__ == '__main__':
