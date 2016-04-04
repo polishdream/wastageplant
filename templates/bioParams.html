@@ -36,42 +36,52 @@
 
 <div class="plant2">
 	<img src="/static/images/bioreaktor.png">
-<!--	
+
+<form action="" method="post">
 	<div class="textboxS">
-		<input type="text" name="si" style="top:103px;">
-		<input type="text" name="snd" style="top:149px;">
-		<input type="text" name="snh" style="top:195px;">
-		<input type="text" name="sno" style="top:242px;">
-		<input type="text" name="so" style="top:288px;">
-		<input type="text" name="ss" style="top:335px;">
+		<input type="text" name="si" style="top:55px;">
+		<input type="text" name="snd" style="top:106px;">
+		<input type="text" name="snh" style="top:157px;">
+		<input type="text" name="sno" style="top:208px;">
+		<input type="text" name="so" style="top:259px;">
+		<input type="text" name="ss" style="top:310px;">
 	</div>
 	
 	<div class="textboxX">
-		<input type="text" name="xbh" style="top:101px;">
-		<input type="text" name="xba" style="top:147px;">
-		<input type="text" name="xs" style="top:193px;">
-		<input type="text" name="xnd" style="top:239px;">
-		<input type="text" name="xp" style="top:286px;">
-		<input type="text" name="xi" style="top:332px;">
+		<input type="text" name="xh" style="top:55px;">
+		<input type="text" name="xa" style="top:106px;">
+		<input type="text" name="xs" style="top:157px;">
+		<input type="text" name="xnd" style="top:208px;">
+		<input type="text" name="xp" style="top:259px;">
+		<input type="text" name="xi" style="top:310px;">
 	</div>
 	
-	<div class="textboxInS">
-		<input type="text" name="si" style="top:125px;">
-		<input type="text" name="snd" style="top:161px;">
-		<input type="text" name="snh" style="top:198px;">
-		<input type="text" name="sno" style="top:234px;">
-		<input type="text" name="so" style="top:272px;">
-		<input type="text" name="ss" style="top:308px;">
+	<div class="textboxStechiometric" style="width:300px;position:absolute;left:255px;">
+		<label class="headingOtherPar">Parametry Stechiometryczne:</label><br><br>
+		<label class="nameOtherPar">Y<sub>A</sub></label><input type="text" name="ya" style="top:43px;"><br><br>
+		<label class="nameOtherPar">Y<sub>H</sub></label><input type="text" name="yh" style="top:88px;"><br><br>
+		<label class="nameOtherPar">f<sub>p</sub></label><input type="text" name="fp" style="top:133px;"><br><br>
+		<label class="nameOtherPar">i<sub>xb</sub></label><input type="text" name="ixb" style="top:178px;"><br><br>
+		<label class="nameOtherPar">i<sub>xp</sub></label><input type="text" name="ixp" style="top:223px;">
 	</div>
-	
-	<div class="textboxInX">
-		<input type="text" name="xbh" style="top:125px;">
-		<input type="text" name="xba" style="top:161px;">
-		<input type="text" name="xs" style="top:198px;">
-		<input type="text" name="xnd" style="top:234px;">
-		<input type="text" name="xp" style="top:272px;">
-		<input type="text" name="xi" style="top:308px;">
-	</div>-->
+
+        <div class="textboxStechiometric" style="width:300px;position:absolute; right:245px;">
+                <label class="headingOtherPar">Parametry Kinetyczne:</label><br><br>
+                <label class="nameOtherPar">&mu;<sub>H</sub></label><input type="text" name="mih" style="top:43px;"><br><br>
+                <label class="nameOtherPar">K<sub>s</sub></label><input type="text" name="ks" style="top:89px;"><br><br>
+                <label class="nameOtherPar">K<sub>O,H</sub></label><input type="text" name="koh" style="top:134px;"><br><br>
+                <label class="nameOtherPar">K<sub>NO</sub></label><input type="text" name="kno" style="top:179px;"><br><br>
+                <label class="nameOtherPar">b<sub>H</sub></label><input type="text" name="bh" style="top:224px;"><br><br>
+		<label class="nameOtherPar">&eta;<sub>g</sub></label><input type="text" name="ng" style="top:269px;"><br><br>
+		<label class="nameOtherPar">&eta;<sub>h</sub></label><input type="text" name="nh" style="top:314px;"><br><br>
+		<label class="nameOtherPar">k<sub>h</sub></label><input type="text" name="kh" style="top:359px;"><br><br>
+		<label class="nameOtherPar">K<sub>X</sub></label><input type="text" name="kx" style="top:406px;"><br><br>
+		<label class="nameOtherPar">&mu;<sub>A</sub></label><input type="text" name="mia" style="top:455px;"><br><br>
+		<label class="nameOtherPar">K<sub>NH</sub></label><input type="text" name="knh" style="top:501px;"><br><br>
+        </div>
+	<input class="button bioDefaultButton" type="submit" name="bioSubmit" value="Default">
+        <input class="button bioSaveButton" type="submit" name="bioSubmit" value="Zapisz">
+</form>
 	<a href="{{ url_for('settler') }}"><button name="settparams" class="button button1 nextButton" tyle="vertical-align:middle"><span>Osadnik </span>
 	</button></a>
 	<a href="{{ url_for('influent') }}"><button name="settparams" class="button button2 prevButton" tyle="vertical-align:middle"><span>Dopływ </span>

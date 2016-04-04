@@ -161,22 +161,22 @@ body {
 
 .textboxS input{
 	background-color: rgba(0,0,0,0);
-	border: 1px solid;
+	border: 2px solid;
 	z-index:9;
-	width:103px;
+	width:112px;
 	height:23px;
 	position:absolute;
-	left:566px;
+	left:331px;
 }
 
 .textboxX input{
 	background-color: rgba(0,0,0,0);
-	border: 1px solid;
+	border: 2px solid;
 	z-index:9;
-	width:103px;
+	width:112px;
 	height:23px;
 	position:absolute;
-	left:864px;
+	left:659px;
 }
 
 .textboxL input{
@@ -338,6 +338,29 @@ body {
         left:65px;
 }
 
+.saveButton{
+        font-size:12px;
+        width:140px;
+        height:40px;
+        top:515px;
+        left:65px;
+}
+
+.bioDefaultButton{
+        font-size:12px;
+        width:140px;
+        height:40px;
+        top:460px;
+        left:65px;
+}
+
+.bioSaveButton{
+        font-size:12px;
+        width:140px;
+        height:40px;
+        top:515px;
+        left:65px;
+}
 
 .bioButton{
 	font-size:12px;
@@ -397,4 +420,26 @@ body {
 	height:300px;
 	top:100px;
 	left:1px;
+}
+
+.headingOtherPar{
+	font-size:20px;
+	position:absolute;
+	left:0px;
+}
+
+.nameOtherPar{
+	font-size:18px;
+	position:absolute;
+	left:0px;
+}
+
+.textboxStechiometric input{
+        background-color: rgba(0,0,0,0);
+        border: 2px solid;
+        z-index:9;
+        width:112px;
+        height:23px;
+        position:absolute;
+        left:40px;
 }
