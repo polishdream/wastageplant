@@ -297,3 +297,49 @@ class BioParams(db.Model):
 		self.koa = koa
 		self.ka = ka
 		self.sosat = sosat
+
+class Settler(db.Model):
+        __tablename__ = 'settler'
+        id = db.Column('id',db.Integer, primary_key = True)
+        timetsamp = db.Column('timestamp',db.Text)
+        x1 = db.Column('x1',db.Float)
+        x2 = db.Column('x2',db.Float)
+        x3 = db.Column('x3',db.Float)
+        x4 = db.Column('x4',db.Float)
+        x5 = db.Column('x5',db.Float)
+        x6 = db.Column('x6',db.Float)
+        x7 = db.Column('x7',db.Float)
+        x8 = db.Column('x8',db.Float)
+        x9 = db.Column('x9',db.Float)
+        x10 = db.Column('x10',db.Float)
+	
+	def __init__(self, timestamp, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10):
+		self.timestamp = timestamp
+		self.x1 = x1
+		self.x2 = x2
+		self.x3 = x3
+		self.x4 = x4
+		self.x5 = x5
+		self.x6 = x6
+		self.x7 = x7
+		self.x8 = x8
+		self.x9 = x9
+		self.x10 = x10
+
+class SettlerParams(db.Model):
+        __tablename__ = 'settlerParams'
+        id = db.Column('id',db.Integer, primary_key = True)
+        timetsamp = db.Column('timestamp',db.Text)
+        v10 = db.Column('v10',db.Float)
+        v0 = db.Column('v0',db.Float)
+        rh = db.Column('rh',db.Float)
+        rp = db.Column('rp',db.Float)
+        fns = db.Column('fns',db.Float)
+
+        def __init__(self, timestamp, v10, v0, rh, rp, fns):
+                self.timestamp = timestamp
+                self.v10 = v10
+                self.v0 = v0
+                self.rh = rh
+                self.rp = rp
+                self.fns = fns

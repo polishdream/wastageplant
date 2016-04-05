@@ -1,6 +1,6 @@
 from flask import Flask, g, Markup, render_template, redirect, request, url_for
-from sqlAl import db, Params, BioParams, Cin, C1, C2, C3, C4, C5
-from DefaultSqlAl import DefaultParams, DefaultBioParams, DefaultCin, DefaultC1
+from sqlAl import db, Params, BioParams, Cin, C1, C2, C3, C4, C5, Settler, SettlerParams
+from DefaultSqlAl import DefaultParams, DefaultBioParams, DefaultCin, DefaultC1, DefaultSettler, DefaultSettlerParams
 from werkzeug import secure_filename
 from sqlalchemy import desc
 from sqlalchemy.exc import SQLAlchemyError
@@ -92,7 +92,25 @@ def bioreactor():
 
 @app.route('/symulacja/osadnik')
 def settler():
-        return render_template('osadParams.html')
+	f = Settler.query.first()
+        sf = SettlerParams.query.first()
+        params = [dict(x1 = f.x1,
+			x2 = f.x2,
+			x3 = f.x3,
+			x4 = f.x4,
+			x5 = f.x5,
+			x6 = f.x6,
+			x7 = f.x7,
+			x8 = f.x8,
+			x9 = f.x9,
+			x10 = f.x10,
+			v10 = sf.v10,
+			v0 = sf.v0,
+			rh = sf.rh,
+			rp = sf.rp,
+			fns = sf.fns)]
+
+        return render_template('osadParams.html', Params=params)
 
 @app.route('/submitParams', methods=['POST'])
 def submitParams():
@@ -256,6 +274,43 @@ def submitBioParams():
                 record.sosat = defPar.sosat
                 db.session.commit()
         return redirect(url_for('bioreactor'))
+
+@app.route('/submitSetParams', methods=['POST'])
+def submitSetParams():
+        if request.form['setSubmit'] == 'Zapisz':
+                dt = datetime.datetime.now()
+                record = Settler.query.first()
+                record.timestamp = dt
+                record.x1 = request.form['x1']
+                record.x2 = request.form['x2']
+                record.x3 = request.form['x3']
+                record.x4 = request.form['x4']
+                record.x5 = request.form['x5']
+                record.x6 = request.form['x6']
+                record.x7 = request.form['x7']
+                record.x8 = request.form['x8']
+                record.x9 = request.form['x9']
+                record.x10 = request.form['x10']
+
+		record = SettlerParams.query.first()
+                record.timestamp = dt
+                record.v10 = request.form['v10']
+                record.v0 = request.form['v0']
+                record.rh = request.form['rh']
+                record.rp = request.form['rp']
+                record.fns = request.form['fns']
+		db.session.commit()
+	if request.form['setSubmit'] == 'Reset':
+		defPar = DefaultSettlerParams.query.first()
+		record = SettlerParams.query.first()
+		dt = datetime.datetime.now()
+		record.v10 = defPar.v10
+		record.v0 = defPar.v0
+		record.rh = defPar.rh
+		record.rp = defPar.rp
+		record.fns = defPar.fns
+		db.session.commit()
+	return redirect(url_for('settler'))
 
 if __name__ == '__main__':
     app.run()

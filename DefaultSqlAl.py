@@ -141,3 +141,48 @@ class DefaultBioParams(dbDef.Model):
                 self.mia = mia
                 self.knh = knh
 
+class DefaultSettler(dbDef.Model):
+        __tablename__ = 'settler'
+        id = dbDef.Column('id',dbDef.Integer, primary_key = True)
+        timetsamp = dbDef.Column('timestamp',dbDef.Text)
+        x1 = dbDef.Column('x1',dbDef.Float)
+        x2 = dbDef.Column('x2',dbDef.Float)
+        x3 = dbDef.Column('x3',dbDef.Float)
+        x4 = dbDef.Column('x4',dbDef.Float)
+        x5 = dbDef.Column('x5',dbDef.Float)
+        x6 = dbDef.Column('x6',dbDef.Float)
+        x7 = dbDef.Column('x7',dbDef.Float)
+        x8 = dbDef.Column('x8',dbDef.Float)
+        x9 = dbDef.Column('x9',dbDef.Float)
+        x10 = dbDef.Column('x10',dbDef.Float)
+
+        def __init__(self, timestamp, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10):
+                self.timestamp = timestamp
+                self.x1 = x1
+                self.x2 = x2
+                self.x3 = x3
+                self.x4 = x4
+                self.x5 = x5
+                self.x6 = x6
+                self.x7 = x7
+                self.x8 = x8
+                self.x9 = x9
+                self.x10 = x10
+
+class DefaultSettlerParams(dbDef.Model):
+        __tablename__ = 'settlerParams'
+        id = dbDef.Column('id',dbDef.Integer, primary_key = True)
+        timetsamp = dbDef.Column('timestamp',dbDef.Text)
+        v10 = dbDef.Column('v10',dbDef.Float)
+        v0 = dbDef.Column('v0',dbDef.Float)
+        rh = dbDef.Column('rh',dbDef.Float)
+        rp = dbDef.Column('rp',dbDef.Float)
+        fns = dbDef.Column('fns',dbDef.Float)
+
+        def __init__(self, timestamp, v10, v0, rh, rp, fns):
+                self.timestamp = timestamp
+                self.v10 = v10
+                self.v0 = v0
+                self.rh = rh
+                self.rp = rp
+                self.fns = fns

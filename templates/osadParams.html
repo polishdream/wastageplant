@@ -36,24 +36,33 @@
 
 <div class="plant2">
 	<img class="image" src="/static/images/osadnik.png">
-<!--	
-	<div class="textboxInS">
-		<input type="text" name="si" style="top:125px;">
-		<input type="text" name="snd" style="top:161px;">
-		<input type="text" name="snh" style="top:198px;">
-		<input type="text" name="sno" style="top:234px;">
-		<input type="text" name="so" style="top:272px;">
-		<input type="text" name="ss" style="top:308px;">
+
+{% for p in Params %}
+<form action="{{ url_for('submitSetParams') }}" method="post">
+	<div class="textboxL">
+                <input type="text" name="x1" style="top:73px;" value="{{ p.x1 }}">
+                <input type="text" name="x2" style="top:127px;" value="{{ p.x2 }}">
+                <input type="text" name="x3" style="top:182px;" value="{{ p.x3 }}">
+                <input type="text" name="x4" style="top:236px;" value="{{ p.x4 }}">
+                <input type="text" name="x5" style="top:291px;" value="{{ p.x5 }}">
+                <input type="text" name="x6" style="top:346px;" value="{{ p.x6 }}">
+                <input type="text" name="x7" style="top:400px;" value="{{ p.x7 }}">
+                <input type="text" name="x8" style="top:455px;" value="{{ p.x8 }}">
+                <input type="text" name="x9" style="top:510px;" value="{{ p.x9 }}">
+                <input type="text" name="x10" style="top:566px;" value="{{ p.x10 }}">
+        </div>
+
+	<div class="settlerParams">
+		<label>v'<sub>0</sub></label><input type="text" name="v10" value="{{ p.v10 }}">
+		<label>v<sub>0</sub></label><input type="text" name="v0" value="{{ p.v0 }}">
+		<label>r<sub>h</sub></label><input type="text" name="rh" value="{{ p.rh }}">
+		<label>r<sub>p</sub></label><input type="text" name="rp" value="{{ p.rp }}">
+		<label>f<sub>ns</sub></label><input type="text" name="fns" value="{{ p.fns }}">
 	</div>
-	
-	<div class="textboxInX">
-		<input type="text" name="xbh" style="top:125px;">
-		<input type="text" name="xba" style="top:161px;">
-		<input type="text" name="xs" style="top:198px;">
-		<input type="text" name="xnd" style="top:234px;">
-		<input type="text" name="xp" style="top:272px;">
-		<input type="text" name="xi" style="top:308px;">
-	</div>-->
+	<input class="button bioDefaultButton" type="submit" name="setSubmit" value="Reset">
+        <input class="button bioSaveButton" type="submit" name="setSubmit" value="Zapisz">
+</form>
+{% endfor %}
 	<a href="{{ url_for('influent') }}"><button name="settparams" class="button button1 nextButton" tyle="vertical-align:middle"><span>Dopływ </span>
 	</button></a>
 	<a href="{{ url_for('bioreactor') }}"><button name="settparams" class="button button2 prevButton" tyle="vertical-align:middle"><span>Bioreaktor </span>
