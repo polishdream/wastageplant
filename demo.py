@@ -1,6 +1,6 @@
 from flask import Flask, g, Markup, render_template, redirect, request, url_for
-from sqlAl import db, Params, Cin, C1, C2, C3, C4, C5
-from DefaultSqlAl import DefaultParams, DefaultCin
+from sqlAl import db, Params, BioParams, Cin, C1, C2, C3, C4, C5
+from DefaultSqlAl import DefaultParams, DefaultBioParams, DefaultCin, DefaultC1
 from werkzeug import secure_filename
 from sqlalchemy import desc
 from sqlalchemy.exc import SQLAlchemyError
@@ -54,7 +54,41 @@ def influent():
 
 @app.route('/symulacja/bioreaktor')
 def bioreactor():
-        return render_template('bioParams.html')
+	f = C1.query.first()
+	bf = BioParams.query.first()
+        params = [dict(si = f.si,
+                        snd = f.snd,
+                        snh = f.snh,
+                        sno = f.sno,
+                        so = f.so,
+                        ss = f.ss,
+                        xa = f.xa,
+                        xh = f.xh,
+                        xi = f.xi,
+                        xnd = f.xnd,
+                        xp = f.xp,
+                        xs = f.xs,
+                	ya = bf.ya,
+                	yh = bf.yh,
+                	fp = bf.fp,
+                	ixb = bf.ixb,
+                	ixp = bf.ixp,
+                	mih = bf.mih,
+                	ks = bf.ks,
+                	koh = bf.koh,
+                	kno = bf.kno,
+                	bh = bf.bh,
+                	ng = bf.ng,
+                	nh = bf.nh,
+                	kh = bf.kh,
+                	kx = bf.kx,
+                	mia = bf.mia,
+                	knh = bf.knh,
+                	ba = bf.ba,
+                	koa = bf.koa,
+                	ka = bf.ka,
+                	sosat = bf.sosat)]
+        return render_template('bioParams.html', Params = params)
 
 @app.route('/symulacja/osadnik')
 def settler():
@@ -135,6 +169,93 @@ def submitInParams():
 		record.xs = defPar.xs
                 db.session.commit()
         return redirect(url_for('influent'))
+
+
+@app.route('/submitBioParams', methods=['POST'])
+def submitBioParams():
+        if request.form['bioSubmit'] == 'Zapisz':
+                dt = datetime.datetime.now()
+                record = C1.query.first()
+                record.timestamp = dt
+                record.si = request.form['si']
+                record.snd = request.form['snd']
+                record.snh = request.form['snh']
+                record.sno = request.form['sno']
+                record.so = request.form['so']
+                record.ss = request.form['ss']
+                record.xa = request.form['xa']
+                record.xh = request.form['xh']
+                record.xi = request.form['xi']
+                record.xnd = request.form['xnd']
+                record.xp = request.form['xp']
+                record.xs = request.form['xs']
+
+		record = BioParams.query.first()
+                record.timestamp = dt
+                record.ya = request.form['ya']
+                record.yh = request.form['yh']
+                record.fp = request.form['fp']
+                record.ixb = request.form['ixb']
+                record.ixp = request.form['ixp']
+                record.mih = request.form['mih']
+                record.ks = request.form['ks']
+                record.koh = request.form['koh']
+                record.kno = request.form['kno']
+                record.bh = request.form['bh']
+                record.ng = request.form['ng']
+                record.nh = request.form['nh']
+		record.kh = request.form['kh']
+		record.kx = request.form['kx']
+		record.mia = request.form['mia']
+		record.knh = request.form['knh']
+		record.ba = request.form['ba']
+		record.koa = request.form['koa']
+		record.ka = request.form['ka']
+		record.sosat = request.form['sosat']
+                db.session.commit()
+
+        elif request.form['bioSubmit'] == 'Default':
+                defPar = DefaultC1.query.first()
+                dt = datetime.datetime.now()
+                record = C1.query.first()
+                record.timestamp = dt
+                record.snd = defPar.snd
+                record.snh = defPar.snh
+                record.sno = defPar.sno
+                record.so = defPar.so
+                record.ss = defPar.ss
+                record.xa = defPar.xa
+                record.xh = defPar.xh
+                record.xi = defPar.xi
+                record.xnd = defPar.xnd
+                record.xp = defPar.xp
+                record.xs = defPar.xs
+
+		defPar = DefaultBioParams.query.first()
+		record = BioParams.query.first()
+                record.timestamp = dt
+                record.ya = defPar.ya
+                record.yh = defPar.yh
+                record.fp = defPar.fp
+                record.ixb = defPar.ixb
+                record.ixp = defPar.ixp
+                record.mih = defPar.mih
+                record.ks = defPar.ks
+                record.koh = defPar.koh
+                record.kno = defPar.kno
+                record.bh = defPar.bh
+                record.ng = defPar.ng
+                record.nh = defPar.nh
+                record.kh = defPar.kh
+                record.kx = defPar.kx
+                record.mia = defPar.mia
+                record.knh = defPar.knh
+                record.ba = defPar.ba
+                record.koa = defPar.koa
+                record.ka = defPar.ka
+                record.sosat = defPar.sosat
+                db.session.commit()
+        return redirect(url_for('bioreactor'))
 
 if __name__ == '__main__':
     app.run()
