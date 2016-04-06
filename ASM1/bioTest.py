@@ -8,83 +8,67 @@ import settler as stlr
 
 class Params(object):
 	def __init__(self):
-		self.tp = 20/(24.0*3600.0) #sekundy, czas probkowania
-		self.tsim = db.selectLast('params','tsim') # czas symulacji w dniach
+		self.tp = 20/(24.0*3600.0) 
+		self.tsim = db.selectLast('params','tsim')
 		self.iter = int(self.tsim/self.tp)
 		self.progres = int(self.iter*0.05)
 
 		#BIOREACTOR
-		self.q_in= db.selectLast('params','qin') * self.tp #m3/iteracje
-		self.q_ir = db.selectLast('params','qir') * self.q_in #sprzezenie zwrotne wewnetrzne
-		self.q_r = db.selectLast('params','qr') * self.q_in #sprzezenie zwrotne zewetrzne
+		self.q_in= db.selectLast('params','qin') * self.tp #m3/iteration
+		self.q_ir = db.selectLast('params','qir') * self.q_in
+		self.q_r = db.selectLast('params','qr') * self.q_in
 		self.q = self.q_in + self.q_ir + self.q_r
-		self.so_sat = db.selectLast('params','sosat')
+		self.so_sat = db.selectLast('bioParams','sosat')
+		self.kla1 = db.selectLast('params','kla1')
+		self.kla2 = db.selectLast('params','kla2')
 		self.kla3 = db.selectLast('params','kla3')
 		self.kla4 = db.selectLast('params','kla4')
 		self.kla5 = db.selectLast('params','kla5')
 
 		#SETTLER
 		self.q_f = self.q - self.q_ir
-		self.q_e = db.selectLast('params','qe')*self.q_in
+		self.q_w = db.selectLast('params','qw')*self.tp
+		self.q_e = self.q_in - self.q_w
 		self.q_u = self.q_f - self.q_e
-		self.q_w = db.selectLast('params','qw')*self.q_in
-		self.nr_layers = 10	#ilosc warstw
-		self.A = 1500.0 #powierzchnia m2
-		self.V = 6000.0 #objetosc m3
+		self.nr_layers = 10
+		self.A = 1500.0 
+		self.V = 6000.0 
 		self.h_f = 0.4
-		self.X = [0.0] * 10 
+		self.X = [db.selectLast('settler','x1'), db.selectLast('settler','x2'), db.selectLast('settler','x3'), db.selectLast('settler','x4'), db.selectLast('settler','x5'), db.selectLast('settler','x6'), db.selectLast('settler','x7'), db.selectLast('settler','x8'), db.selectLast('settler','x9'), db.selectLast('settler','x10')] 
 		self.dX = [0.0] * 10
 		self.X_f = 0.0
-		self.X_e = 12.5
-		self.X_u = 6394.0
-		self.settlerPar = [250.0*self.tp,474.0*self.tp, 0.0005760, 0.00286, 0.00228, 3000.0] #parametry osadnika: v'o,vo, rh, rp, fns, xt		
+		self.X_e = self.X[0]
+		self.X_u = self.X[9]
+		self.settlerPar = [db.selectLast('settlerParams','v10')*self.tp,db.selectLast('settlerParams','v0')*self.tp, db.selectLast('settlerParams','rh'), db.selectLast('settlerParams','rp'), db.selectLast('settlerParams','fns'), 3000.0] #settler parameters: v'o,vo, rh, rp, fns, xt
 
 		self.xTab = []
 		self.yTab = []
 		self.step = 300 #co ile wartosci pobiera dana do wykresu i aktualizuje go [s]
 		self.kompTab = ['C1','C2','C3','C4','C5', 'settler']
 		self.fracTab = ['so','sno','snd','snh','ss','si','xh','xa','xs','xnd','xp','xi']
-
-		#parametry do sterowania praca programu
-		self.start = db.selectLast('flags','start')
-		self.stop = db.selectLast('flags','stop')
-		self.updateFlag = db.selectLast('flags','start')
 	
-	def updateParams(self):
-                self.tp = db.selectLast('params','tp')/(24.0*3600.0) #sekundy, czas probkowania
-                self.q_in= db.selectLast('params','qin') * self.tp #m3/iteracje
-                self.q_ir = db.selectLast('params','qir') * self.q_in #sprzezenie zwrotne wewnetrzne
-                self.q_r = db.selectLast('params','qr') * self.q_in #sprzezenie zwrotne zewetrzne
-		self.q = self.q_in + self.q_ir + self.q_r
-                self.so_sat = db.selectLast('params','sosat')
-                self.tsim = db.selectLast('params','tsim') # czas symulacji w dniach
-                self.iter = int(self.tsim/self.tp)
-                self.kla = db.selectLast('params','kla')
-
-                #parametry do sterowania praca programu
-                self.start = db.selectLast('flags','start')
-                self.stop= db.selectLast('flags','stop')
-                self.updateValues = db.selectLast('flags','refresh')
-
-class Kompartment(Params):	#C
-	def __init__(self,params,so,sno,snd,snh,ss,si,xh,xa,xs,xnd,xp,xi,vol=0.0,kla=0.0):
-		self.s_o = so	#0
-		self.s_no = sno	#1
-		self.s_nd = snd	#2
-		self.s_nh = snh	#3
-		self.s_s = ss	#4
-		self.s_i = si	#5
-		self.x_h = xh	#6
-		self.x_a = xa	#7
-		self.x_s = xs	#8
-		self.x_nd = xnd	#9
-		self.x_p = xp	#10
-		self.x_i = xi	#11
+class Kompartment():	#C
+	def __init__(self,tp,valuesTab,vol=0.0,kla=0.0):
+		#valuesTab = []
+		#for i in values:
+		#	valuesTab.append[i]
+		self.s_o = valuesTab[6]	#6
+		self.s_no = valuesTab[5]#5
+		self.s_nd = valuesTab[3]#3
+		self.s_nh = valuesTab[4]#4
+		self.s_s = valuesTab[7]	#7
+		self.s_i = valuesTab[2]	#2
+		self.x_h = valuesTab[9]	#9
+		self.x_a = valuesTab[8]	#8
+		self.x_s = valuesTab[13]#13
+		self.x_nd = valuesTab[11]#11
+		self.x_p = valuesTab[12]#12
+		self.x_i = valuesTab[10]#10
 		
 		self.v = vol
-		self.k_la = kla*params.tp
+		self.k_la = kla*tp
 	
-	def przepisz(self,Cnew): #n - argument opcjonalny, wsppolczynnik potrzebny np w Cr (cf) 
+	def przepisz(self,Cnew):
                 self.s_o = Cnew.s_o   #0
                 self.s_no = Cnew.s_no #1
                 self.s_nd = Cnew.s_nd #2
@@ -98,27 +82,27 @@ class Kompartment(Params):	#C
                 self.x_p = Cnew.x_p   #10
                 self.x_i = Cnew.x_i   #11
 
-	def stworzRekord(self,par): #par - obiekt klasy params
+	def stworzRekord(self,par):
 		self.ts = datetime.datetime.now().replace(microsecond=0)
-		r = (self.ts,par.q_in,par.q_ir,par.q_r,self.k_la,self.s_o,self.s_no,self.s_nd,self.s_nh,self.s_s,self.s_i,self.x_h,self.x_a,self.x_s,self.x_nd,self.x_p,self.x_i)
+		r = (self.ts,self.s_o,self.s_no,self.s_nd,self.s_nh,self.s_s,self.s_i,self.x_h,self.x_a,self.x_s,self.x_nd,self.x_p,self.x_i)
 		return r
 
 class Ro(Params):	#kinetyczne
-	def __init__(self,params): #zmienic na parametry opcjonalne!
-		self.mi_h = 4.0*params.tp 	#0
-		self.b_h = 0.3*params.tp 	#1
-		self.k_h = 3.0*params.tp	#2
-		self.mi_a = 0.5*params.tp	#3
-		self.b_a = 0.05*params.tp	#4
-		self.k_a = 0.05*params.tp	#5
-		self.k_s = 10.0			#6
-		self.k_oh = 0.2			#7
-		self.k_no = 0.5			#8
-		self.n_g = 0.8			#9
-		self.n_h = 0.8			#10
-		self.k_x = 0.1			#11
-		self.k_nh = 1.0			#12
-		self.k_oa = 0.4			#13
+	def __init__(self,params):
+		self.mi_h = db.selectLast('bioParams','mih')*params.tp 	#0
+		self.b_h = db.selectLast('bioParams','bh')*params.tp 	#1
+		self.k_h = db.selectLast('bioParams','kh')*params.tp	#2
+		self.mi_a = db.selectLast('bioParams','mia')*params.tp	#3
+		self.b_a = db.selectLast('bioParams','ba')*params.tp	#4
+		self.k_a = db.selectLast('bioParams','ka')*params.tp	#5
+		self.k_s = db.selectLast('bioParams','ks')		#6
+		self.k_oh = db.selectLast('bioParams','koh')		#7
+		self.k_no = db.selectLast('bioParams','kno')		#8
+		self.n_g = db.selectLast('bioParams','ng')		#9
+		self.n_h = db.selectLast('bioParams','nh')		#10
+		self.k_x = db.selectLast('bioParams','kx')		#11
+		self.k_nh = db.selectLast('bioParams','knh')		#12
+		self.k_oa = db.selectLast('bioParams','koa')		#13
 
 	def obliczRo(self, komp):
                 self.ro1 = self.mi_h * (komp.s_s / (self.k_s + komp.s_s)) * (komp.s_o / (self.k_oh + komp.s_o)) * komp.x_h
@@ -129,20 +113,14 @@ class Ro(Params):	#kinetyczne
                 self.ro6 = self.k_a * komp.s_nd * komp.x_h
                 self.ro7 = self.k_h*((komp.x_s/komp.x_h)/(self.k_x+(komp.x_s/komp.x_h)))*((komp.s_o/(komp.s_o+self.k_oh))+self.n_h*(self.k_oh/(self.k_oh+komp.s_o))*(komp.s_no/(komp.s_no+self.k_no)))*komp.x_h
                 self.ro8 = self.k_h*((komp.x_s/komp.x_h)/(self.k_x+(komp.x_s/komp.x_h)))*((komp.s_o/(komp.s_o+self.k_oh))+self.n_h*(self.k_oh/(self.k_oh+komp.s_o))*(komp.s_no/(komp.s_no+self.k_no)))*komp.x_h*(komp.x_nd/komp.x_s)
-	
-	def wyswietl(self):
-		print self.mi_h, self.b_h, self.k_h, self.mi_a, self.b_a, self.k_oa
-
-	def wyswietlRo(self):
-		print self.ro1, self.ro2, self.ro3, self.ro4, self.ro5, self.ro6, self.ro7, self.ro8
 
 class R(Params):	#stechiometryczne
-	def __init__(self,ya=0.24,yh=0.67,fp=0.08,ixb=0.08,ixp=0.06):
-		self.y_a = ya		#0
-		self.y_h = yh		#1
-		self.f_p = fp		#2
-		self.i_xb = ixb		#3
-		self.i_xp = ixp		#4
+	def __init__(self):
+		self.y_a = db.selectLast('bioParams','ya')	#0
+		self.y_h = db.selectLast('bioParams','yh')	#1
+		self.f_p = db.selectLast('bioParams','fp')	#2
+		self.i_xb = db.selectLast('bioParams','ixb')	#3
+		self.i_xp = db.selectLast('bioParams','ixp')	#4
 
 	def obliczR(self, ro):
 		self.r_so = -((1-self.y_h) / self.y_h) * ro.ro1 - ((4.57 - self.y_a) / self.y_a) * ro.ro3
@@ -164,41 +142,42 @@ class R(Params):	#stechiometryczne
 
 	
 #==================================================================================== MAIN =======================================================================================
-#parametry, ktore nie moga sie znajdowac w params
-m = 0.0 #ograniczenie wartosci (funkcja max)
-path = '/var/www/demo/baza.db' #sciezka do bazy danych
-db.connect(path) #polaczenie z baza
-sym = open('/var/www/demo/ASM1/symulacje.txt', 'a')
-sym.write('Rozpoczynam dzialanie. start = ' + str(start) + ' ' +  str(datetime.datetime.now()) + '\n')
+m = 0.0 
+paramsDbPath = '/media/sdcard/userParams.db'
+resultDbPath = '/media/sdcard/simulationResults.db'
+db.connect(paramsDbPath) #polaczenie z baza
 
 licz = 0 #licznik zapisanych rekordow
-os.remove('/var/www/demo/ASM1/progres.txt')
+if os.path.exists('/var/www/demo/ASM1/progres.txt'):
+	os.remove('/var/www/demo/ASM1/progres.txt')
 params = Params()
 
-#wyczyszczenie bazy danych
-db.clearDb()
+
 # ASM1
-C1 = Kompartment(params,0.0,5.37,1.22,7.92,2.81,30.0,2552.0,148.0,82.1,5.28,449.0,1149.0,vol=1000.0)
-C2 = Kompartment(params,0.0,3.66,0.882,8.34,1.46,30.0,2553.0,148.0,76.4,5.03,450.0,1149.0,vol=1000.0)
-C3 = Kompartment(params,1.72,6.54,0.829,5.55,1.15,30.0,2557.0,149.0,64.9,4.39,45.0,1149.0,vol=1333.0,kla=params.kla3) #ostatnie parametry K_la, vol opcjonalne - domysln$
-C4 = Kompartment(params,2.43,9.30,0.767,2.97,0.995,30.0,2559.0,150.0,55.7,3.88,451.0,1149.0,vol=1333.0,kla=params.kla4)
-C5 = Kompartment(params,0.491,10.4,0.688,1.73,0.889,30.0,2559.0,150.0,49.3,3.53,452.0,1149.0,vol=1333.0,kla=params.kla5)
+emptyComp = [0.0]*14
+compartmentValues = db.selectRecord('C1')
+C1 = Kompartment(params.tp,compartmentValues,vol=1000.0,kla=params.kla1)
+C2 = Kompartment(params.tp,compartmentValues,vol=1000.0,kla=params.kla2)
+C3 = Kompartment(params.tp,compartmentValues,vol=1333.0,kla=params.kla3)
+C4 = Kompartment(params.tp,compartmentValues,vol=1333.0,kla=params.kla4)
+C5 = Kompartment(params.tp,compartmentValues,vol=1333.0,kla=params.kla5)
 
-C1_new = Kompartment(params,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
-C2_new = Kompartment(params,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
-C3_new = Kompartment(params,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
-C4_new = Kompartment(params,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
-C5_new = Kompartment(params,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
+C1_new = Kompartment(params.tp,emptyComp)
+C2_new = Kompartment(params.tp,emptyComp)
+C3_new = Kompartment(params.tp,emptyComp)
+C4_new = Kompartment(params.tp,emptyComp)
+C5_new = Kompartment(params.tp,emptyComp)
 
-C_in = Kompartment(params,0.0,0.0,6.95,31.56,69.5,30.00,28.17,0.0,202.32,10.59,0.0,51.20)
-C_ir = Kompartment(params,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
+compartmentValues = db.selectRecord('Cin')
+C_in = Kompartment(params.tp,compartmentValues)
+C_ir = Kompartment(params.tp,emptyComp)
 C_ir.przepisz(C5)
 
 #settler
-C_u = Kompartment(params,0.491,10.4,0.688,1.73,0.889,30.0,5005.0,293.0,96.4,6.90,884.0,2247.0)
-C_r = Kompartment(params,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
+C_u = Kompartment(params.tp,emptyComp) #0.491,10.4,0.688,1.73,0.889,30.0,5005.0,293.0,96.4,6.90,884.0,2247.0])	#maybe zeros?
+C_r = Kompartment(params.tp,emptyComp)
 C_r.przepisz(C_u)
-C_e = Kompartment(params,0.491,10.4,0.688,1.73,0.889,30.0,9.78,0.573,0.188,0.0135,1.73,4.39)
+C_e = Kompartment(params.tp,emptyComp)#,2,0.491,10.4,0.688,1.73,0.889,30.0,9.78,0.573,0.188,0.0135,1.73,4.39])	#maybe zeros?
 
 Ro1 = Ro(params)
 Ro2 = Ro(params)
@@ -212,11 +191,15 @@ R3 = R()
 R4 = R()
 R5 = R()
 
-#POZOSTALE PARAMETRY
+sym = open('/var/www/demo/ASM1/symulacje.txt', 'a')
+sym.write('Rozpoczynam dzialanie. ' +  str(datetime.datetime.now()) + '\n')
 sym.write(str(params.iter) + '\n')
 sym.close()
 r = range(params.iter)
+db.closeConn()
 
+db.connect(resultDbPath)
+db.clearDb()
 for i in r:	#rozpoczecie obliczen
 #BIOREACTOR
 	#kompartment 1
@@ -299,14 +282,16 @@ for i in r:	#rozpoczecie obliczen
         C5_new.x_p =  max(m,(params.q/C5.v) * (C4.x_p-C5.x_p)+R5.r_xp + C5.x_p)
         C5_new.x_i =  max(m,(params.q/C5.v) * (C4.x_i-C5.x_i)+R5.r_xi + C5.x_i)
 
-#OSADNIK
+#OSADNIK		
+	
 	params.X_f = 0.75*(C5.x_s+C5.x_p+C5.x_i+C5.x_h+C5.x_a)
-	params.X_e = 0.75*(C_e.x_s+C_e.x_p+C_e.x_i+C_e.x_h+C_e.x_a)
-	params.X_u = 0.75*(C_u.x_s+C_u.x_p+C_u.x_i+C_u.x_h+C_u.x_a)
-		
+	
 	stlr.takacs(10,params.A, params.V, params.q_f, params.X_f, params.q_u, params.settlerPar, params.X, params.dX)
 	stlr.clarification(C5,C_e,params.X_f,params.X_e)
 	stlr.sedimentation(C5,C_u,params.X_f,params.X_u)
+
+	params.X_e = 0.75*(C_e.x_s+C_e.x_p+C_e.x_i+C_e.x_h+C_e.x_a)
+	params.X_u = 0.75*(C_u.x_s+C_u.x_p+C_u.x_i+C_u.x_h+C_u.x_a)
 
 	for i in range(len(params.X)):
 		params.X[i] = params.X[i] + params.dX[i] 
@@ -337,16 +322,16 @@ for i in r:	#rozpoczecie obliczen
         db.insert('external_recycle',r)
 
 	db.insertSettler('settler', params.X)
-	db.commitChanges()
-	licz = licz +1
+	#db.commitChanges()
+	licz = licz + 1
 	if licz == params.progres:
 		f = open('progres.txt','a')
 		f.write('/')
 		f.close()
 		licz = 0
+	db.commitChanges()
 
-	#db.commitChanges()
-	sym = open('/var/www/demo/ASM1/symulacje.txt', 'a')
-        sym.write('Symulacja zakonczona ' + str(datetime.datetime.now()) + '\n')
-	sym.close()
+sym = open('/var/www/demo/ASM1/symulacje.txt', 'a')
+sym.write('Symulacja zakonczona ' + str(datetime.datetime.now()) + '\n')
+sym.close()
 db.closeConn()

@@ -14,7 +14,7 @@ def connect(path): #path - string
 		print 'Polaczono z baza.'
 
 def insert(table, record): #nazwa tabeli, rekord danych (moze byc string => (parametry))
-	cur.execute('INSERT INTO ' + table + ' (timestamp,qin,qir,qr,kla,so,sno,snd,snh,ss,si,xh,xa,xs,xnd,xp,xi) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', record)
+	cur.execute('INSERT INTO ' + table + ' (timestamp,so,sno,snd,snh,ss,si,xh,xa,xs,xnd,xp,xi) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', record)
 
 def insertSettler(table,x):
 	cur.execute('INSERT INTO ' + table + ' (timestamp, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10) VALUES (?,?,?,?,?,?,?,?,?,?,?)', (datetime.datetime.now(),x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],x[9]))
@@ -34,10 +34,15 @@ def selectLast(table,column):
 	cur.execute('SELECT ' + column + ' FROM ' + table + ' WHERE id = (SELECT MAX(id) FROM ' + table + ')')
 	return cur.fetchone()[0]
 
+def selectRecord(table):
+        cur.execute('SELECT * FROM ' + table)
+        return cur.fetchone()
+
 def commitChanges():
 	conn.commit()
 
 def closeConn():
+	print 'rozlaczono z baza'
 	conn.close()
 
 def delFirst(table):

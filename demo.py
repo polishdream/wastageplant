@@ -301,9 +301,22 @@ def submitSetParams():
                 record.fns = request.form['fns']
 		db.session.commit()
 	if request.form['setSubmit'] == 'Reset':
+		dt = datetime.datetime.now()
+		defPar = DefaultSettler.query.first()
+                record = Settler.query.first()
+		record.x1 = defPar.x1
+                record.x2 = defPar.x2
+                record.x3 = defPar.x3
+                record.x4 = defPar.x4
+                record.x5 = defPar.x5
+		record.x6 = defPar.x6
+                record.x7 = defPar.x7
+                record.x8 = defPar.x8
+                record.x9 = defPar.x9
+                record.x10 = defPar.x10
+
 		defPar = DefaultSettlerParams.query.first()
 		record = SettlerParams.query.first()
-		dt = datetime.datetime.now()
 		record.v10 = defPar.v10
 		record.v0 = defPar.v0
 		record.rh = defPar.rh
