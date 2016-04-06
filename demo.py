@@ -7,6 +7,7 @@ from sqlalchemy.exc import SQLAlchemyError
 import sqlite3
 import datetime
 import os
+#from subprocess import Popen, PIPE, STDOUT
 import subprocess
 
 app = Flask(__name__)
@@ -18,7 +19,7 @@ app.debug = True
 def index():
         return render_template('index.html')
 
-@app.route('/symulacja')
+@app.route('/simulation')
 def symulacja():
 	f = Params.query.first()
 	params = [dict(tsim = f.tsim,
@@ -34,7 +35,7 @@ def symulacja():
 			
         return render_template('params.html', Params=params)
 
-@app.route('/symulacja/doplyw')
+@app.route('/influent')
 def influent():
         f = Cin.query.first()
         params = [dict(si = f.si,
@@ -52,7 +53,7 @@ def influent():
 
         return render_template('doplyw.html', Params=params)
 
-@app.route('/symulacja/bioreaktor')
+@app.route('/bioreactor')
 def bioreactor():
 	f = C1.query.first()
 	bf = BioParams.query.first()
@@ -90,7 +91,7 @@ def bioreactor():
                 	sosat = bf.sosat)]
         return render_template('bioParams.html', Params = params)
 
-@app.route('/symulacja/osadnik')
+@app.route('/secondarySettler')
 def settler():
 	f = Settler.query.first()
         sf = SettlerParams.query.first()
@@ -147,7 +148,11 @@ def submitParams():
                 record.kla4 = defPar.kla4
                 record.kla5 = defPar.kla5
                 db.session.commit()
-	return redirect(url_for('symulacja'))
+	elif request.form['submit'] == 'Start':
+		subprocess.call(["/var/www/demo/ASM1/bioTest.py"])
+		#Popen(('/var/www/demo/ASM1/script.py',), stdout=PIPE, stderr=STDOUT)
+	#return redirect(url_for('symulacja'))
+	return render_template("process.html")
 
 @app.route('/submitInParams', methods=['POST'])
 def submitInParams():

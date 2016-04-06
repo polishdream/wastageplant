@@ -1,0 +1,15 @@
+Polaczono z baza.
+rozlaczono z baza
+Polaczono z baza.
+Czyszczenie bazy
+baza jest pusta
+Traceback (most recent call last):
+  File "/var/www/demo/ASM1/bioTest.py", line 278, in <module>
+    C5_new.s_i =  max(m,(params.q/C5.v) * (C4.s_i-C5.s_i)+R5.r_si + C5.s_i)
+KeyboardInterrupt
+Polaczono z baza.
+rozlaczono z baza
+Polaczono z baza.
+Czyszczenie bazy
+baza jest pusta
+rozlaczono z baza

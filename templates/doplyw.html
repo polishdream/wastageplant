@@ -1,39 +1,6 @@
-<!DOCTYPE html>
-<html lang="pl-PL">
-<head>
-	<meta charset="UTF-8">
-	<title>ASMET</title>
-	<link rel="stylesheet" type="text/css" href="/static/params.css">
-</head>
+{% extends "params.html" %}
 
-<body>
-
-<div>
-	<ul id="menu">		
-		<li><a href="{{ url_for('index') }}">Home</a></li>
-		<li><a href="{{ url_for('symulacja') }}">Parametry symulacji</a></li>
-		<li class="dropdown">
-			<a href="#" class="dropbtn">Wyniki symulacji</a>
-				<div class="dropdown-content">
-					<div class="dropdown2">
-						<a href="#" class="dropbtn2">Bioreaktor</a>
-							<div class="dropdown-content2" style="top:51px; left:433px;">
-								<a href="#">Frakcje rozpuszczone</a>
-								<a href="#">Frakcje w  zawiesinie</a>
-							</div>
-					</div>
-					<div class="dropdown2">
-						<a href="#" class="dropbtn2">Osadnik</a>
-							<div class="dropdown-content2" style="top:97px; left:433px;">
-								<a href="#">Strefa klaryfikacji</a>
-								<a href="#">Strefa sedymentacji</a>
-							</div>
-					</div>
-				</div>
-		</li>
-	</ul>
-</div>
-
+{% block main_content %}
 <div class="plant2">
 	<img class="influent" src="/static/images/doplyw.png">
 
@@ -65,6 +32,4 @@
 	<a href="{{ url_for('settler') }}"><button name="settparams" class="button button2 prevButton" tyle="vertical-align:middle"><span>Osadnik </span>
 	</button></a>
 </div>
-
-</body>
-</html>
+{% endblock %}

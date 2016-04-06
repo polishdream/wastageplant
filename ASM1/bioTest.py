@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import pickle
 import math
 import datetime
@@ -148,8 +149,8 @@ resultDbPath = '/media/sdcard/simulationResults.db'
 db.connect(paramsDbPath) #polaczenie z baza
 
 licz = 0 #licznik zapisanych rekordow
-if os.path.exists('/var/www/demo/ASM1/progres.txt'):
-	os.remove('/var/www/demo/ASM1/progres.txt')
+if os.path.exists('/var/www/demo/ASM1/processInfo/progres.txt'):
+	os.remove('/var/www/demo/ASM1/processInfo/progres.txt')
 params = Params()
 
 
@@ -191,7 +192,7 @@ R3 = R()
 R4 = R()
 R5 = R()
 
-sym = open('/var/www/demo/ASM1/symulacje.txt', 'a')
+sym = open('/var/www/demo/ASM1/processInfo/symulacje.txt', 'a')
 sym.write('Rozpoczynam dzialanie. ' +  str(datetime.datetime.now()) + '\n')
 sym.write(str(params.iter) + '\n')
 sym.close()
@@ -325,13 +326,13 @@ for i in r:	#rozpoczecie obliczen
 	#db.commitChanges()
 	licz = licz + 1
 	if licz == params.progres:
-		f = open('progres.txt','a')
+		f = open('/var/www/demo/ASM1/processInfo/progres.txt','a')
 		f.write('/')
 		f.close()
 		licz = 0
-	db.commitChanges()
+#	db.commitChanges()
 
-sym = open('/var/www/demo/ASM1/symulacje.txt', 'a')
+sym = open('/var/www/demo/ASM1/processInfo/symulacje.txt', 'a')
 sym.write('Symulacja zakonczona ' + str(datetime.datetime.now()) + '\n')
 sym.close()
 db.closeConn()

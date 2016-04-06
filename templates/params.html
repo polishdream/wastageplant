@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>ASMET</title>
 	<link rel="stylesheet" type="text/css" href="static/params.css">
+	<link rel="icon" type="image/png" href="/static/images/inz_logo.png">
 </head>
 
 <body>
@@ -34,6 +35,7 @@
 	</ul>
 </div>
 
+{% block main_content %}
 <div class="plant">
 	<img src="/static/images/oczyszczalnia_dpi.png">
 	<!--
@@ -51,6 +53,7 @@
 	</div>
 	
 	-->
+
 {% for Par in Params %}
 <form action="{{ url_for('submitParams') }}" method="post">
 	<div>
@@ -68,6 +71,7 @@
 	</div>
 	<input class="button defaultButton" type="submit" name="submit" value="Default">
 	<input class="button saveButton" type="submit" name="submit" value="Zapisz">
+	<input class="button saveButton" type="submit" name="submit" style="top:580px;" value="Start">
 </form>
 {% endfor %}
 	<a href="{{ url_for('influent') }}"><button name="influent" class="button button1 inButton"><span>Parametry </span>
@@ -79,7 +83,8 @@
 	<a href="{{ url_for('settler') }}"><button name="settparams" class="button button1 settlerButton" tyle="vertical-align:middle"><span>Parametry </span>
 	</button></a>
 
-	
 </div>
+{% endblock %}	
+
 </body>
 </html>
