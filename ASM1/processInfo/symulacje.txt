@@ -1,5 +1,79 @@
-Rozpoczynam dzialanie. 2016-04-06 18:08:12.729534
+Rozpoczynam dzialanie. 2016-04-06 21:19:37.236656
 12960
-Rozpoczynam dzialanie. 2016-04-06 18:26:50.677636
+Symulacja zakonczona 2016-04-06 21:20:47.343650
+Rozpoczynam dzialanie. 2016-04-06 21:22:19.862514
 12960
-Symulacja zakonczona 2016-04-06 18:27:58.695680
+Symulacja zakonczona 2016-04-06 21:23:32.469271
+Rozpoczynam dzialanie. 2016-04-06 21:24:23.624712
+12960
+Symulacja zakonczona 2016-04-06 21:25:32.744579
+Rozpoczynam dzialanie. 2016-04-06 21:26:44.386138
+30240
+Symulacja zakonczona 2016-04-06 21:29:36.309076
+Rozpoczynam dzialanie. 2016-04-06 23:18:31.393786
+30240
+Symulacja zakonczona 2016-04-06 23:21:21.189622
+Rozpoczynam dzialanie. 2016-04-06 23:31:19.461472
+4320
+Symulacja zakonczona 2016-04-06 23:31:40.230752
+Rozpoczynam dzialanie. 2016-04-06 23:37:14.403486
+4320
+Symulacja zakonczona 2016-04-06 23:37:34.969175
+Rozpoczynam dzialanie. 2016-04-06 23:38:27.210703
+4320
+Symulacja zakonczona 2016-04-06 23:38:48.145176
+Rozpoczynam dzialanie. 2016-04-06 23:40:15.765857
+4320
+Symulacja zakonczona 2016-04-06 23:40:36.739420
+Rozpoczynam dzialanie. 2016-04-06 23:46:45.383923
+4320
+Symulacja zakonczona 2016-04-06 23:47:06.165570
+Rozpoczynam dzialanie. 2016-04-06 23:51:35.712218
+4320
+Symulacja zakonczona 2016-04-06 23:51:56.382737
+Rozpoczynam dzialanie. 2016-04-06 23:54:14.728961
+2160
+Symulacja zakonczona 2016-04-06 23:54:24.760367
+Rozpoczynam dzialanie. 2016-04-06 23:59:29.531123
+2160
+Symulacja zakonczona 2016-04-06 23:59:39.537449
+Rozpoczynam dzialanie. 2016-04-07 00:00:56.002197
+2160
+Symulacja zakonczona 2016-04-07 00:01:06.493752
+Rozpoczynam dzialanie. 2016-04-07 00:03:33.033609
+2160
+Symulacja zakonczona 2016-04-07 00:03:43.418428
+Rozpoczynam dzialanie. 2016-04-07 00:05:08.329284
+2160
+Symulacja zakonczona 2016-04-07 00:05:18.877218
+Rozpoczynam dzialanie. 2016-04-07 00:06:37.294228
+2160
+Symulacja zakonczona 2016-04-07 00:06:47.385010
+Rozpoczynam dzialanie. 2016-04-07 00:10:12.262258
+2160
+Symulacja zakonczona 2016-04-07 00:10:24.202272
+Rozpoczynam dzialanie. 2016-04-07 00:11:51.231008
+2160
+Symulacja zakonczona 2016-04-07 00:12:01.870664
+Rozpoczynam dzialanie. 2016-04-07 00:12:34.095825
+2160
+Symulacja zakonczona 2016-04-07 00:12:44.660729
+Rozpoczynam dzialanie. 2016-04-07 00:13:00.143242
+2160
+Symulacja zakonczona 2016-04-07 00:13:10.632200
+Rozpoczynam dzialanie. 2016-04-07 00:19:16.175663
+2160
+Symulacja zakonczona 2016-04-07 00:19:26.551070
+Rozpoczynam dzialanie. 2016-04-07 00:32:40.517078
+2160
+Symulacja zakonczona 2016-04-07 00:32:50.494022
+Rozpoczynam dzialanie. 2016-04-07 00:42:24.874202
+2160
+Symulacja zakonczona 2016-04-07 00:49:53.622869
+Rozpoczynam dzialanie. 2016-04-07 00:53:26.416586
+2160
+Rozpoczynam dzialanie. 2016-04-07 00:54:42.403179
+2160
+Rozpoczynam dzialanie. 2016-04-07 00:58:27.166394
+2160
+Symulacja zakonczona 2016-04-07 01:06:26.171641

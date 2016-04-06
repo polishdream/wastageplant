@@ -1,7 +1,9 @@
 {%extends "params.html" %}
-
+{% block meta %}
+	<meta http-equiv="refresh" content="3">
+{% endblock %}
 {%block main_content %}
 <div style="position:absolute;top:200px;">
-processing
+<span>processing {{ progres }} %<span>  
 </div>
 {%endblock%}

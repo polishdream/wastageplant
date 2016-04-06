@@ -7,13 +7,18 @@ from sqlalchemy.exc import SQLAlchemyError
 import sqlite3
 import datetime
 import os
-#from subprocess import Popen, PIPE, STDOUT
-import subprocess
+from subprocess import Popen, PIPE
+import time
+#import subprocess
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config.from_envvar('DEMO_SETTINGS', silent=True)
 app.debug = True
+
+asm_status=0
+progres_path = '/var/www/demo/ASM1/processInfo/progres.txt'
+asm_script_path = '/var/www/demo/ASM1/bioTest.py'
 
 @app.route('/')
 def index():
@@ -21,6 +26,7 @@ def index():
 
 @app.route('/simulation')
 def symulacja():
+  if asm_status == 0:
 	f = Params.query.first()
 	params = [dict(tsim = f.tsim,
 			qin = f.qin,
@@ -32,8 +38,9 @@ def symulacja():
 			kla3 = f.kla3,
 			kla4 = f.kla4,
 			kla5 = f.kla5)]
-			
         return render_template('params.html', Params=params)
+  else:
+	return redirect(url_for('calculate_on'))
 
 @app.route('/influent')
 def influent():
@@ -130,10 +137,10 @@ def submitParams():
 		record.kla4 = request.form['kla4']
 		record.kla5 = request.form['kla5']
 		db.session.commit()
+		return redirect(url_for('symulacja'))
 
 	elif request.form['submit'] == 'Default':
 		defPar = DefaultParams.query.first()
-
                 dt = datetime.datetime.now()
                 record = Params.query.first()
                 record.timestamp = dt
@@ -148,11 +155,30 @@ def submitParams():
                 record.kla4 = defPar.kla4
                 record.kla5 = defPar.kla5
                 db.session.commit()
+		return redirect(url_for('symulacja'))
+
 	elif request.form['submit'] == 'Start':
-		subprocess.call(["/var/www/demo/ASM1/bioTest.py"])
-		#Popen(('/var/www/demo/ASM1/script.py',), stdout=PIPE, stderr=STDOUT)
-	#return redirect(url_for('symulacja'))
-	return render_template("process.html")
+		global asm_Popen
+		if os.path.exists(progres_path):
+                        file = os.remove(progres_path)
+		asm_Popen = Popen(["nohup", asm_script_path, "&"], stdout=PIPE, stderr=PIPE)
+		return redirect(url_for('calculate_on'))
+
+@app.route('/calculating')
+def calculate_on():
+	if asm_Popen.poll() is None:
+		global asm_status
+		asm_status = 1
+		if os.path.exists(progres_path):
+			file = open(progres_path, 'r')
+			prog = file.readline().split()
+			progValue = len(prog)
+		else:
+			progValue = 0
+		return render_template('process.html', progres = progValue*5)
+	else:
+		asm_status = 0
+		return redirect(url_for('symulacja'))
 
 @app.route('/submitInParams', methods=['POST'])
 def submitInParams():

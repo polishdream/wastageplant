@@ -327,10 +327,10 @@ for i in r:	#rozpoczecie obliczen
 	licz = licz + 1
 	if licz == params.progres:
 		f = open('/var/www/demo/ASM1/processInfo/progres.txt','a')
-		f.write('/')
+		f.write('/ ')
 		f.close()
 		licz = 0
-#	db.commitChanges()
+	db.commitChanges()
 
 sym = open('/var/www/demo/ASM1/processInfo/symulacje.txt', 'a')
 sym.write('Symulacja zakonczona ' + str(datetime.datetime.now()) + '\n')
