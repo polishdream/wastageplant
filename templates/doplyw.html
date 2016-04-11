@@ -1,35 +1,38 @@
 {% extends "params.html" %}
-
+{% block bootstrap %}
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+{%endblock%}
 {% block main_content %}
-<div class="plant2">
-	<img class="influent" src="/static/images/doplyw.png">
-
-{% for Par in Params %}
-<form action="{{ url_for('submitInParams') }}" method="post">
-	<div class="textboxInS">
-		<input type="text" name="si" style="top:60px;" value="{{ Par.si }}">
-		<input type="text" name="snd" style="top:133px;" value="{{ Par.snd  }}">
-		<input type="text" name="snh" style="top:205px;" value="{{ Par.snh }}">
-		<input type="text" name="sno" style="top:277px;" value="{{ Par.sno }}">
-		<input type="text" name="so" style="top:350px;" value="{{ Par.so }}">
-		<input type="text" name="ss" style="top:423px;" value="{{ Par.ss }}">
-	</div>
-	
-	<div class="textboxInX">
-		<input type="text" name="xh" style="top:60px;" value="{{ Par.xh }}">
-		<input type="text" name="xa" style="top:133px;" value="{{ Par.xa }}">
-		<input type="text" name="xs" style="top:205px;" value="{{ Par.xs }}">
-		<input type="text" name="xnd" style="top:277px;" value="{{ Par.xnd }}">
-		<input type="text" name="xp" style="top:350px;" value="{{ Par.xp }}">
-		<input type="text" name="xi" style="top:423px;" value="{{ Par.xi }}">
-	</div>
-	<input class="button inDefaultButton" type="submit" name="inSubmit" value="Default">
-        <input class="button inSaveButton" type="submit" name="inSubmit" value="Zapisz">
-</form>
-{% endfor %}
-	<a href="{{ url_for('bioreactor') }}"><button name="bioParams" class="button button1 nextButton" tyle="vertical-align:middle"><span>Bioreaktor </span>
+<div>
+	<a href="{{ url_for('bioreactor', name='bioreactor') }}"><button name="bioParams" class="button button1 nextButton" tyle="vertical-align:middle"><span>Bioreaktor </span>
 	</button></a>
 	<a href="{{ url_for('settler') }}"><button name="settparams" class="button button2 prevButton" tyle="vertical-align:middle"><span>Osadnik </span>
 	</button></a>
+</div>
+<div class="plant2">
+<!--	<img class="influent" src="/static/images/doplyw.png">
+-->
+{% for par in Params %}
+<form action="{{ url_for('submitInParams') }}" method="post">
+<!--	<div class="textboxInS">
+		<input type="text" name="si" style="top:60px;" value="{{ par.si }}">
+		<input type="text" name="snd" style="top:133px;" value="{{ par.snd  }}">
+		<input type="text" name="snh" style="top:205px;" value="{{ par.snh }}">
+		<input type="text" name="sno" style="top:277px;" value="{{ par.sno }}">
+		<input type="text" name="so" style="top:350px;" value="{{ par.so }}">
+		<input type="text" name="ss" style="top:423px;" value="{{ par.ss }}">
+	</div>
+	
+	<div class="textboxInX">
+		<input type="text" name="xh" style="top:60px;" value="{{ par.xh }}">
+		<input type="text" name="xa" style="top:133px;" value="{{ par.xa }}">
+		<input type="text" name="xs" style="top:205px;" value="{{ par.xs }}">
+		<input type="text" name="xnd" style="top:277px;" value="{{ par.xnd }}">
+		<input type="text" name="xp" style="top:350px;" value="{{ par.xp }}">
+		<input type="text" name="xi" style="top:423px;" value="{{ par.xi }}">
+	</div>-->
+	{% include 'influent_tabmenu.html' %}
+</form>
+{% endfor %}
 </div>
 {% endblock %}

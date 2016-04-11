@@ -1,0 +1,17 @@
+<div class="container tabmenu">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#soluble">Stężenia frakcji rozpuszczonych</a></li>
+    <li><a data-toggle="tab" href="#biomass">Stężenia frakcji w zawiesinie</a></li>
+  </ul>
+
+  <div class="tab-content" style="text-align:left;">
+    <div id="soluble" class="tab-pane fade in active">
+      {% include 'soluble_tab.html' %}
+    </div>
+    <div id="biomass" class="tab-pane fade">
+      {% include 'biomass_tab.html' %}
+    </div>
+  </div>
+</div>
+        <input class="button bioDefaultButton" type="submit" name="inSubmit" value="Default">
+        <input class="button bioSaveButton" type="submit" name="inSubmit" value="Zapisz">

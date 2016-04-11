@@ -6,11 +6,22 @@
 	to{ opacity:1; }
 }
 
-body {
+body.standard {
   font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 20px;
   text-align: center;
-  background: #E3CAA1;
+  position: relative;
+  background: #d6dedb;/*#E3CAA1;*/
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{
+	-webkit-appearance: none;
+	margin:0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
 }
 
 #menu {
@@ -85,7 +96,7 @@ body {
 .plant {
 	/*border-style:solid;
 	border-width:1px;*/
-	position:absolute;
+	position:relative;
 	margin: auto;
 	width: 1170px;
 	left: 0;
@@ -107,12 +118,12 @@ body {
 .plant2 {
 	/*border-style:solid;
 	border-width:1px;*/
-	position:absolute;
+	position:relative;
 	margin: auto;
 	width: 1170px;
 	left: 0;
 	right:0;
-	top: 100px;
+	top: 120px;
 	animation-name: fadeInMenu;
 	animation-duration: 3s;
 	z-index:9;
@@ -210,13 +221,13 @@ body {
 }
 
 .textboxQir {
-	top:456px;
-	left:604px;
+	top:457px;
+	left:603px;
 }
 
 .textboxQr {
-	top:528px;
-	left:640px;
+	top:529px;
+	left:639px;
 }
 
 .textboxQw {
@@ -226,12 +237,12 @@ body {
 
 .kla {
 	background-color: rgba(0,0,0,0);
-	border: 1px solid;
+	border: 2px solid;
 	z-index:9;
 	position:absolute;
-	width:34px;
-	height:10px;
-	top:397px;
+	width:38px;
+	height:13px;
+	top:395px;
 }
 
 .kla1 {
@@ -350,16 +361,16 @@ body {
         font-size:12px;
         width:140px;
         height:40px;
-        top:460px;
-        left:65px;
+        /*top:460px;*/
+        left:20px;
 }
 
 .bioSaveButton{
         font-size:12px;
         width:140px;
         height:40px;
-        top:515px;
-        left:65px;
+        /*top:515px;*/
+        left:185px;
 }
 
 .bioButton{
@@ -380,10 +391,11 @@ body {
 
 .nextButton{
 	font-size:20px;
-	width:134px;
-	height:300px;
-	top:100px;
-	right:1px;
+	width:234px;
+	height:80px;
+	position:relative;
+	top:80px;
+	left:550px;
 }
 
 .button2 span{
@@ -416,10 +428,12 @@ body {
 
 .prevButton{
 	font-size:20px;
-	width:134px;
-	height:300px;
-	top:100px;
-	left:1px;
+	width:234px;
+	height:80px;
+	position:relative;
+	top:80px;
+	margin-left:0px;
+	right:550px;
 }
 
 .headingOtherPar{
@@ -468,3 +482,11 @@ body {
         position:relative;
 }
 
+.tabmenu{
+	width:100%; 
+	font-size:17px; 
+	background-color:white; 
+	padding:5px; 
+	border-radius:10px; 
+	top:50px;
+}

@@ -1,0 +1,25 @@
+<div class="container tabmenu">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#soluble">Stężenia frakcji rozpuszczonych</a></li>
+    <li><a data-toggle="tab" href="#biomass">Stężenia frakcji w zawiesinie</a></li>
+    <li><a data-toggle="tab" href="#stoichiometric">Parametry Stechiometryczne</a></li>
+    <li><a data-toggle="tab" href="#kinetic">Parametry kinetyczne</a></li>
+  </ul>
+
+  <div class="tab-content" style="text-align:left;">
+    <div id="soluble" class="tab-pane fade in active">
+      {% include 'soluble_tab.html' %}
+    </div>
+    <div id="biomass" class="tab-pane fade">
+      {% include 'biomass_tab.html' %}
+    </div>
+    <div id="stoichiometric" class="tab-pane fade">
+      {% include 'stoichiometry_tab.html' %}
+    </div>
+    <div id="kinetic" class="tab-pane fade">
+      {% include 'kinetic_tab.html' %}
+    </div>
+  </div>
+</div>
+        <input class="button bioDefaultButton" type="submit" name="bioSubmit" value="Default">
+        <input class="button bioSaveButton" type="submit" name="bioSubmit" value="Zapisz">

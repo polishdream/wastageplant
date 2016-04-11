@@ -1,12 +1,21 @@
 {% extends "params.html" %}
-
+{% block bootstrap %}
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+{%endblock%}
 {% block main_content %}
-<div class="plant2">
-	<img src="/static/images/bioreaktor.png">
+<div>
+	<a href="{{ url_for('settler') }}"><button name="settparams" class="button button1 nextButton" style="vertical-align:middle"><span>Osadnik </span>
+	</button></a>
+	<a href="{{ url_for('influent', name='influent') }}"><button name="settparams" class="button  button2 prevButton"><span>Dopływ </span>
+	</button></a>
+<div>
 
+<div class="plant2">
+<!--	<img src="/static/images/bioreaktor.png">
+-->
 {% for par in Params %}
 <form action="{{ url_for('submitBioParams') }}" method="post">
-	<div class="textboxS">
+<!--	<div class="textboxS">
 		<input type="text" name="si" style="top:55px;" value="{{ par.si }}">
 		<input type="text" name="snd" style="top:106px;" value="{{ par.snd }}">
 		<input type="text" name="snh" style="top:157px;" value="{{ par.snh }}">
@@ -50,14 +59,11 @@
 		<label class="nameOtherPar">b<sub>A</sub></label><input type="text" name="ba" style="top:547px;" value="{{ par.ba }}"><br><br>
 		<label class="nameOtherPar">K<sub>O,A</sub></label><input type="text" name="koa" style="top:593px;" value="{{ par.koa }}"><br><br>
 		<label class="nameOtherPar">k<sub>a</sub></label><input type="text" name="ka" style="top:639px;" value="{{ par.ka }}"><br><br>
-        </div>
-	<input class="button bioDefaultButton" type="submit" name="bioSubmit" value="Default">
-        <input class="button bioSaveButton" type="submit" name="bioSubmit" value="Zapisz">
+        </div>-->
+	{% include 'bio_params_tabmenu.html' %}
+<!--	<input class="button bioDefaultButton" type="submit" name="bioSubmit" value="Default">
+        <input class="button bioSaveButton" type="submit" name="bioSubmit" value="Zapisz">-->
 </form>
 {% endfor %}
-	<a href="{{ url_for('settler') }}"><button name="settparams" class="button button1 nextButton" tyle="vertical-align:middle"><span>Osadnik </span>
-	</button></a>
-	<a href="{{ url_for('influent') }}"><button name="settparams" class="button button2 prevButton" tyle="vertical-align:middle"><span>Dopływ </span>
-	</button></a>
 </div>
 {% endblock %}

@@ -1,0 +1,16 @@
+<div class="container tabmenu">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#layers">Stężenia osadu</a></li>
+    <li><a data-toggle="tab" href="#velocityparams">Parametry Osadnika</a></li>
+  </ul>
+
+  <div class="tab-content" style="text-align:left;">
+    <div id="layers" class="tab-pane fade in active">
+      {% include 'settler_layers.html' %}
+    </div>
+    <div id="velocityparams" class="tab-pane fade">
+      {% include 'settler_params_tab.html' %}
+    </div>
+</div>
+        <input class="button bioDefaultButton" type="submit" name="setSubmit" value="Default">
+        <input class="button bioSaveButton" type="submit" name="setSubmit" value="Zapisz">

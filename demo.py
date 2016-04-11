@@ -19,6 +19,10 @@ app.debug = True
 asm_status=0
 progres_path = '/var/www/demo/ASM1/processInfo/progres.txt'
 asm_script_path = '/var/www/demo/ASM1/bioTest.py'
+units = ['g<sub>ChZT</sub> m<sup>-3</sup>',
+	'g<sub>N</sub> m<sup>-3</sup>',
+	'g m<sup>-3</sup>',
+	'd<sup>-1</sup>']
 
 @app.route('/')
 def index():
@@ -42,8 +46,8 @@ def symulacja():
   else:
 	return redirect(url_for('calculate_on'))
 
-@app.route('/influent')
-def influent():
+@app.route('/<name>')
+def influent(name):
         f = Cin.query.first()
         params = [dict(si = f.si,
                         snd = f.snd,
@@ -58,10 +62,10 @@ def influent():
 			xp = f.xp,
 			xs = f.xs)]
 
-        return render_template('doplyw.html', Params=params)
+        return render_template('doplyw.html', Params=params, name=name, units=units)
 
 @app.route('/bioreactor')
-def bioreactor():
+def bioreactor(name='bioreactor'):
 	f = C1.query.first()
 	bf = BioParams.query.first()
         params = [dict(si = f.si,
@@ -96,7 +100,7 @@ def bioreactor():
                 	koa = bf.koa,
                 	ka = bf.ka,
                 	sosat = bf.sosat)]
-        return render_template('bioParams.html', Params = params)
+        return render_template('bioParams.html', Params = params, name=name, units=units)
 
 @app.route('/secondarySettler')
 def settler():
@@ -118,7 +122,7 @@ def settler():
 			rp = sf.rp,
 			fns = sf.fns)]
 
-        return render_template('osadParams.html', Params=params)
+        return render_template('osadParams.html', Params=params, units=units)
 
 @app.route('/submitParams', methods=['POST'])
 def submitParams():
@@ -205,6 +209,7 @@ def submitInParams():
                 dt = datetime.datetime.now()
                 record = Cin.query.first()
                 record.timestamp = dt
+		record.si = defPar.si
                 record.snd = defPar.snd
                 record.snh = defPar.snh
                 record.sno = defPar.sno
@@ -268,6 +273,7 @@ def submitBioParams():
                 dt = datetime.datetime.now()
                 record = C1.query.first()
                 record.timestamp = dt
+		record.si = defPar.si
                 record.snd = defPar.snd
                 record.snh = defPar.snh
                 record.sno = defPar.sno
@@ -331,7 +337,7 @@ def submitSetParams():
                 record.rp = request.form['rp']
                 record.fns = request.form['fns']
 		db.session.commit()
-	if request.form['setSubmit'] == 'Reset':
+	if request.form['setSubmit'] == 'Default':
 		dt = datetime.datetime.now()
 		defPar = DefaultSettler.query.first()
                 record = Settler.query.first()

@@ -1,37 +1,45 @@
 {% extends "params.html" %}
+{% block bootstrap %}
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+{%endblock%}
 {% block main_content %}
-<div class="plant2">
-	<img class="image" src="/static/images/osadnik.png">
+<div>
+	<a href="{{ url_for('influent', name='influent') }}"><button name="settparams" class="button button1 nextButton" tyle="vertical-align:middle"><span>Dopływ </span>
+	</button></a>
+	<a href="{{ url_for('bioreactor', name='bioreactor') }}"><button name="settparams" class="button button2 prevButton" tyle="vertical-align:middle"><span>Bioreaktor </span>
+	</button></a>
+</div>
 
-{% for p in Params %}
+<div class="plant2">
+	<!--<img class="image" src="/static/images/osadnik.png">-->
+
+{% for par in Params %}
 <form action="{{ url_for('submitSetParams') }}" method="post">
-	<div class="textboxL">
-                <input type="text" name="x1" style="top:73px;" value="{{ p.x1 }}">
-                <input type="text" name="x2" style="top:127px;" value="{{ p.x2 }}">
-                <input type="text" name="x3" style="top:182px;" value="{{ p.x3 }}">
-                <input type="text" name="x4" style="top:236px;" value="{{ p.x4 }}">
-                <input type="text" name="x5" style="top:291px;" value="{{ p.x5 }}">
-                <input type="text" name="x6" style="top:346px;" value="{{ p.x6 }}">
-                <input type="text" name="x7" style="top:400px;" value="{{ p.x7 }}">
-                <input type="text" name="x8" style="top:455px;" value="{{ p.x8 }}">
-                <input type="text" name="x9" style="top:510px;" value="{{ p.x9 }}">
-                <input type="text" name="x10" style="top:566px;" value="{{ p.x10 }}">
+<!--	<div class="textboxL">
+                <input type="text" name="x1" style="top:73px;" value="{{ par.x1 }}">
+                <input type="text" name="x2" style="top:127px;" value="{{ par.x2 }}">
+                <input type="text" name="x3" style="top:182px;" value="{{ par.x3 }}">
+                <input type="text" name="x4" style="top:236px;" value="{{ par.x4 }}">
+                <input type="text" name="x5" style="top:291px;" value="{{ par.x5 }}">
+                <input type="text" name="x6" style="top:346px;" value="{{ par.x6 }}">
+                <input type="text" name="x7" style="top:400px;" value="{{ par.x7 }}">
+                <input type="text" name="x8" style="top:455px;" value="{{ par.x8 }}">
+                <input type="text" name="x9" style="top:510px;" value="{{ par.x9 }}">
+                <input type="text" name="x10" style="top:566px;" value="{{ par.x10 }}">
         </div>
 
 	<div class="settlerParams">
-		<label>v'<sub>0</sub></label><input type="text" name="v10" value="{{ p.v10 }}">
-		<label>v<sub>0</sub></label><input type="text" name="v0" value="{{ p.v0 }}">
-		<label>r<sub>h</sub></label><input type="text" name="rh" value="{{ p.rh }}">
-		<label>r<sub>p</sub></label><input type="text" name="rp" value="{{ p.rp }}">
-		<label>f<sub>ns</sub></label><input type="text" name="fns" value="{{ p.fns }}">
+		<label>v'<sub>0</sub></label><input type="text" name="v10" value="{{ par.v10 }}">
+		<label>v<sub>0</sub></label><input type="text" name="v0" value="{{ par.v0 }}">
+		<label>r<sub>h</sub></label><input type="text" name="rh" value="{{ par.rh }}">
+		<label>r<sub>p</sub></label><input type="text" name="rp" value="{{ par.rp }}">
+		<label>f<sub>ns</sub></label><input type="text" name="fns" value="{{ par.fns }}">
 	</div>
 	<input class="button bioDefaultButton" type="submit" name="setSubmit" value="Reset">
-        <input class="button bioSaveButton" type="submit" name="setSubmit" value="Zapisz">
+        <input class="button bioSaveButton" type="submit" name="setSubmit" value="Zapisz">-->
+	{% include 'settler_tabmenu.html' %}
 </form>
 {% endfor %}
-	<a href="{{ url_for('influent') }}"><button name="settparams" class="button button1 nextButton" tyle="vertical-align:middle"><span>Dopływ </span>
-	</button></a>
-	<a href="{{ url_for('bioreactor') }}"><button name="settparams" class="button button2 prevButton" tyle="vertical-align:middle"><span>Bioreaktor </span>
-	</button></a>
+
 </div>
 {% endblock %}

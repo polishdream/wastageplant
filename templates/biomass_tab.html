@@ -1,0 +1,50 @@
+<div class="container" style="width:99%">           
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Opis</th>
+        <th>Symbol</th>
+        <th>Wartość</th>
+        <th>Jednostka</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>description</td>
+        <td>X<sub>B,H</sub></td>
+        <td><input type="number" step="any" min="0" style="width:100px;" name="xh" value="{{ par.xh }}"></td>
+        <td>{{ units[0]|safe }}</td>
+      </tr>
+      <tr>
+        <td>description</td>
+        <td>X<sub>B,A</sub></td>
+        <td><input type="number" step="any" min="0" style="width:100px;" name="xa" value="{{ par.xa }}"></td>
+        <td>{{ units[0]|safe }}</td>
+      </tr>
+      <tr>
+        <td>description</td>
+        <td>X<sub>S</sub></td>
+        <td><input type="number" step="any" min="0" style="width:100px;" name="xs" value="{{ par.xs }}"></td>
+        <td>{{ units[0]|safe }}</td>
+      </tr>
+      <tr>
+        <td>description</td>
+        <td>X<sub>ND</sub></td>
+        <td><input type="number" step="any" min="0" style="width:100px;" name="xnd" value="{{ par.xnd }}"></td>
+        <td>{{ units[1]|safe }}</td>
+      </tr>
+      <tr>
+        <td>description</td>
+        <td>X<sub>P</sub></td>
+        <td><input type="number" step="any" min="0" style="width:100px;" name="xp"  value="{{ par.xp }}"></td>
+        <td>{{ units[0]|safe }}</td>
+      </tr>
+      <tr>
+        <td>description</td>
+        <td>X<sub>I</sub></td>
+        <td><input type="number" step="any" min="0" style="width:100px;" name="xi" value="{{ par.xi }}"></td>
+        <td>{{ units[0]|safe }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -4,11 +4,17 @@
 	<meta charset="UTF-8">
 	{% block meta %} {% endblock %}
 	<title>ASMET</title>
-	<link rel="stylesheet" type="text/css" href="static/params.css">
 	<link rel="icon" type="image/png" href="/static/images/inz_logo.png">
+{% block bootstrap %}
+<!--	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+{%endblock%}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="static/params.css">
 </head>
 
-<body>
+<body class="standard">
 
 <div>
 	<ul id="menu">		
@@ -38,47 +44,32 @@
 
 {% block main_content %}
 <div class="plant">
-	<img src="/static/images/oczyszczalnia_dpi.png">
-	<!--
-	<div class="textboxL">
-		<input type="text" name="l1" style="top:75px;">
-		<input type="text" name="l2" style="top:113px;">
-		<input type="text" name="l3" style="top:150px;">
-		<input type="text" name="l4" style="top:188px;">
-		<input type="text" name="l5" style="top:225px;">
-		<input type="text" name="l6" style="top:263px;">
-		<input type="text" name="l7" style="top:300px;">
-		<input type="text" name="l8" style="top:338px;">
-		<input type="text" name="l9" style="top:374px;">
-		<input type="text" name="l10" style="top:413px;">
-	</div>
-	
-	-->
+	<img src="/static/images/treatment_plant.png">
 
 {% for Par in Params %}
 <form action="{{ url_for('submitParams') }}" method="post">
 	<div>
-		<label style="position:absolute;top:106px;left:270px;font-size:12px;">Czas symulacji:</label><input type="text" class="textboxQ textboxTsim" name=tsim value="{{ Par.tsim }}">
+		<label style="position:absolute;top:106px;left:270px;font-size:12px;">Czas symulacji:</label><input type="number" class="textboxQ textboxTsim" name=tsim value="{{ Par.tsim }}">
 		<input type="number" max="22000" min="0" maxlength="8" step="0.1" class="textboxQ textboxQin" name=qin value="{{ Par.qin }}">
-		<input type="text" class="textboxQ textboxQir" name="qir" value="{{ Par.qir }}">
-		<input type="text" class="textboxQ textboxQr" name="qr" value="{{ Par.qr }}">
-		<input type="text" class="textboxQ textboxQw" name="qw" value="{{ Par.qw }}">
+		<input type="number" class="textboxQ textboxQir" name="qir" value="{{ Par.qir }}">
+		<input type="number" class="textboxQ textboxQr" name="qr" value="{{ Par.qr }}">
+		<input type="number" class="textboxQ textboxQw" name="qw" value="{{ Par.qw }}">
 		
-		<input type="text" class="kla kla1" name="kla1" value="{{ Par.kla1 }}">
-		<input type="text" class="kla kla2" name="kla2" value="{{ Par.kla2 }}">
-		<input type="text" class="kla kla3" name="kla3" value="{{ Par.kla3 }}">
-		<input type="text" class="kla kla4" name="kla4" value="{{ Par.kla4 }}">
-		<input type="text" class="kla kla5" name="kla5" value="{{ Par.kla5 }}">
+		<input type="number" class="kla kla1" name="kla1" value="{{ Par.kla1 }}">
+		<input type="number" class="kla kla2" name="kla2" value="{{ Par.kla2 }}">
+		<input type="number" class="kla kla3" name="kla3" value="{{ Par.kla3 }}">
+		<input type="number" class="kla kla4" name="kla4" value="{{ Par.kla4 }}">
+		<input type="number" class="kla kla5" name="kla5" value="{{ Par.kla5 }}">
 	</div>
 	<input class="button defaultButton" type="submit" name="submit" value="Default">
 	<input class="button saveButton" type="submit" name="submit" value="Zapisz">
 	<input class="button saveButton" type="submit" name="submit" style="top:580px;" value="Start">
 </form>
 {% endfor %}
-	<a href="{{ url_for('influent') }}"><button name="influent" class="button button1 inButton"><span>Parametry </span>
+	<a href="{{ url_for('influent', name='influent') }}"><button name="influent" class="button button1 inButton"><span>Parametry </span>
 	</button></a>
 	
-	<a href="{{ url_for('bioreactor') }}"><button name="bioparams" class="button button1 bioButton" tyle="vertical-align:middle"><span>Parametry </span>
+	<a href="{{ url_for('bioreactor', name='bioreactor') }}"><button name="bioparams" class="button button1 bioButton" tyle="vertical-align:middle"><span>Parametry </span>
 	</button></a>
 	
 	<a href="{{ url_for('settler') }}"><button name="settparams" class="button button1 settlerButton" tyle="vertical-align:middle"><span>Parametry </span>

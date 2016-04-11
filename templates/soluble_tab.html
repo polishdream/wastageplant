@@ -1,0 +1,58 @@
+<div class="container" style="width:99%">           
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Opis</th>
+        <th>Symbol</th>
+        <th>Wartość</th>
+        <th>Jednostka</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>description</td>
+        <td>S<sub>I</sub></td>
+        <td><input type="number" step="any" min="0" style="width:100px;" name="si" value="{{ par.si }}"></td>
+        <td>{{ units[0]|safe }}</td>
+      </tr>
+      <tr>
+        <td>description</td>
+        <td>S<sub>ND</sub></td>
+        <td><input type="number" step="any" min="0" style="width:100px;" name="snd" value="{{ par.snd }}"></td>
+        <td>{{ units[1]|safe }}</td>
+      </tr>
+      <tr>
+        <td>description</td>
+        <td>S<sub>NH</sub></td>
+        <td><input type="number" step="any" min="0" style="width:100px;" name="snh"  value="{{ par.snh }}"></td>
+        <td>{{ units[1]|safe }}</td>
+      </tr>
+      <tr>
+        <td>description</td>
+        <td>S<sub>NO</sub></td>
+        <td><input type="number" step="any" min="0" style="width:100px;" name="sno"  value="{{ par.sno }}"></td>
+        <td>{{ units[1]|safe }}</td>
+      </tr>
+      <tr>
+        <td>description</td>
+        <td>S<sub>O</sub></td>
+        <td><input type="number" step="any" min="0" style="width:100px;" name="so" value="{{ par.so }}"></td>
+        <td>{{ units[0]|safe }}</td>
+      </tr>
+      <tr>
+        <td>description</td>
+        <td>S<sub>S</sub></td>
+        <td><input type="number" step="any" min="0" style="width:100px;" name="ss" value="{{ par.ss }}"></td>
+        <td>{{ units[0]|safe }}</td>
+      </tr>
+{% if name=='bioreactor' %}
+      <tr>
+        <td>description</td>
+        <td>S<sup>*</sup><sub>O</sub></td>
+        <td><input type="number" step="any" min="0" style="width:100px;" name="sosat" value="{{ par.sosat }}"></td>
+        <td>{{ units[2]|safe }}</td>
+      </tr>
+{% endif %}
+    </tbody>
+  </table>
+</div>
